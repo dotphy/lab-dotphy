@@ -12,3 +12,18 @@
   top: 80vh;
   left: 50vw;
 }
+.App__Experiment {
+  position: absolute;
+  top: 5vh;
+  left: 3vw;
+}
+.App__Sidebar {
+  position: absolute;
+  top: 5vh;
+  right: 3vw;
+}
+.App__Experiment #logo {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+}
