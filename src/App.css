@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.App {
+  background-color: #242526;
+  width: 100vw;
+  height: 100vh;
+}
+.App__Controls {
+  position: absolute;
+  top: 80vh;
+  left: 50vw;
+}

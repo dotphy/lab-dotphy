@@ -1,0 +1,10 @@
+.controls {
+  transform: translateX(-50%);
+  border: 2px white solid;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: rgb(34, 33, 33);
+}
+.controls img {
+  margin: 0px 20px;
+}
