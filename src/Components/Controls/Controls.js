@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+
 import play from "../../Assets/play.svg";
 import pause from "../../Assets/pause.svg";
 import repeat from "../../Assets/repeat.svg";
 import graph from "../../Assets/graph.svg";
 import configure from "../../Assets/configure.svg";
-import "./controls.css";
+import "./Controls.css";
 
 function Play(props) {
   let src = props.status == "play" ? play : pause;
@@ -50,7 +50,7 @@ export function Controls(props) {
   }
 
   return (
-    <div className={`controls ${props.className}`}>
+    <div className={`Controls ${props.className}`}>
       <Play status={playStatus} onClick={handlePlayClick} />
       <Repeat status={repeatStatus} onClick={handleRepeatClick} />
       <Graph status={graphStatus} onClick={handleGraphStatus} />
