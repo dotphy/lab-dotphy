@@ -1,0 +1,8 @@
+controls {
+  display: flex;
+}
+.icons {
+  color: white;
+  background-color: black;
+  font-size: 2em !important;
+}
