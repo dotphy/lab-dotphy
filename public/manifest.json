@@ -1,6 +1,6 @@
 {
   "short_name": "DotPhy",
-  "name": "Experiment Physics Right on Your Screen",
+  "name": "Let's Have Fun ",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,5 +11,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#0000"
+  "background_color": "#ffffff"
 }
