@@ -25,13 +25,15 @@ function Header() {
           <Forum />
         </div>
       </div>
-      <div className="hader__right">
+      <div className="header__right">
         <div className="header__input">
           <SearchOutlined />
           <input type="text" placeholder="Find A Experiment" />{" "}
         </div>
       </div>
     </div>
+
+    //Changes Made in the second branch
   );
 }
 
