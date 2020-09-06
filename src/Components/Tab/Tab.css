@@ -21,3 +21,9 @@
 .tab h4 {
   margin-left: 20px;
 }
+
+@media only screen and (max-width: 650px) {
+  .tab {
+    padding: 10px 0px 10px 10px;
+  }
+}

@@ -32,8 +32,6 @@ function Header() {
         </div>
       </div>
     </div>
-
-    //Changes Made in the second branch
   );
 }
 

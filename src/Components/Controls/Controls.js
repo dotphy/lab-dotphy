@@ -1,16 +1,9 @@
 import React from "react";
 import "./Controls.css";
-import SvgPlay from "../../Assets/play.js";
+import Pause from "@material-ui/icons/Pause";
 
 function Controls() {
-  return (
-    <div className="controls">
-      <h1>
-        {" "}
-        <SvgPlay />
-      </h1>
-    </div>
-  );
+  return <div className="controls"></div>;
 }
 
 export default Controls;
