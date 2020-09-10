@@ -3,15 +3,15 @@ import "./App.css";
 import Header from "./Components/Header/Header";
 import MiniLabs from "./Components/MiniLabs/MiniLabs";
 import Controls from "./Components/Controls/Controls";
+import Experiment from "./Components/Experiment/Experiment";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Header />
       <div className="main">
         <Controls />
-        <div className="experiment"> </div>
-        <MiniLabs />
+        <Experiment />
       </div>
     </div>
   );

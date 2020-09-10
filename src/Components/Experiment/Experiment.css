@@ -1,15 +1,15 @@
-.Experiment {
-  height: 70vh;
-  width: 65vw;
-  background-color: black;
-  border-radius: 5px;
+.experiment {
+  background-color: #252526;
+  width: 70vw;
+  height: 80vh;
   border-radius: 10px;
+  margin: 30px 30px 50px 30px;
+  flex: 1;
 }
 
-.Experiment__Dotphy {
-  width: 20px;
-  height: 20px;
-  opacity: 0.3;
-  transform: translate(-200%, -200%);
-  z-index: 99999;
+@media only screen and (max-width: 650px) {
+  .experiment {
+    height: 80vh;
+    margin: 10px 0px 0px 40px;
+  }
 }

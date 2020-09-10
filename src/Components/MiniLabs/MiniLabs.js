@@ -1,8 +1,15 @@
 import React from "react";
-import "../Tab/Tab";
 import "./MiniLabs.css";
+import Avatar from "@material-ui/core/Avatar";
 
-import Tab from "../Tab/Tab";
+function Tab(props) {
+  return (
+    <div className={`tab ${props.active == true ? "tab-active" : ""}`}>
+      <Avatar src={props.icon} className="avtr" />
+      <h4> {props.text}</h4>
+    </div>
+  );
+}
 
 function MiniLab() {
   return (

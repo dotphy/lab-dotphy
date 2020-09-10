@@ -1,6 +1,35 @@
 .mini-labs {
   margin: 50px 70px 0px 0px;
 }
+.tab {
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+}
+.tab-active {
+  background-color: #202122;
+}
+.tab:hover {
+  background-color: #202122;
+}
+
+.avtr {
+  background-color: white;
+  border-radius: 8px !important;
+}
+
+.tab h4 {
+  margin-left: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+  .tab {
+    padding: 10px 0px 10px 10px;
+  }
+}
 
 @media only screen and (max-width: 650px) {
   .mini-labs {

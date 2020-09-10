@@ -2,18 +2,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.experiment {
-  background-color: #252526;
-  width: 70vw;
-  height: 80vh;
-  border-radius: 10px;
-  margin: 30px 0px 50px 10px;
-}
-
-@media only screen and (max-width: 650px) {
-  .experiment {
-    height: 80vh;
-    margin: 10px 0px 0px 40px;
-  }
-}

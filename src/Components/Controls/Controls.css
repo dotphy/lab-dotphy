@@ -16,3 +16,10 @@
 .graph {
   color: white;
 }
+
+.on {
+  background-color: #242526;
+  fill: white;
+  box-shadow: 0px 0px 10px 0px black;
+  border-radius: 10px;
+}
