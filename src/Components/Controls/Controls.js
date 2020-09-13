@@ -28,7 +28,7 @@ function Graph({ status, onClick }) {
 //-----------------------------------------------------------
 
 function Controls() {
-  const [playStatus, setPlayStatus] = useState("pause");
+  const [playStatus, setPlayStatus] = useState("pause ");
   const [configureStatus, setConfigureStatus] = useState("on");
   const [graphStatus, setGraphStatus] = useState("off");
 

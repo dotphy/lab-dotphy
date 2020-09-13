@@ -66,7 +66,7 @@
 @media only screen and (max-width: 650px) {
   .header__icon {
     margin-left: 1px;
-    width: 40px;
+    width: 30px;
     padding: 0px;
   }
   .header__option {
@@ -76,17 +76,7 @@
   .header__option .MuiSvgIcon-root {
     font-size: 1.4em;
   }
-  .header__input input {
-    width: 2px;
-    padding: 0px 10px 0px 0px;
-    z-index: 12;
-  }
-  .header__input input:hover {
-    width: 200px;
-    transition: 0.8s;
-  }
-
-  .header__input {
-    padding: 6px;
+  .header__right {
+    display: none;
   }
 }

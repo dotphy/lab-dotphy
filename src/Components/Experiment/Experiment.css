@@ -10,6 +10,7 @@
 @media only screen and (max-width: 650px) {
   .experiment {
     height: 80vh;
-    margin: 10px 0px 0px 40px;
+    width: 90vw;
+    margin: 10px 0px 0px 0px;
   }
 }

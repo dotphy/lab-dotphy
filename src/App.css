@@ -1,4 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: column;
+}
 .main {
   display: flex;
   justify-content: space-between;
+}
+
+@media only screen and (max-width: 650px) {
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 90vh;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
