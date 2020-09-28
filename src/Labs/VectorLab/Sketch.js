@@ -40,7 +40,7 @@ export default function Sketch(p) {
   p.setup = () => {
     p.createCanvas(window.innerWidth / 2, window.innerHeight / 2);
     v1 = new MyVec(0, 0, true);
-    v2 = new MyVec(window.innerWidth / 4, window.innerHeight / 4, false);
+    v2 = new MyVec(window.innerWidth / 8, window.innerHeight / 8, false);
   };
 
   p.draw = () => {
