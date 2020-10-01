@@ -12,7 +12,7 @@
 <br>
 
 **😮But What are we currently tried to make**
-<p> We are on the mission to make all that labs that are needs of a High school students . As a starting point We are currently trying to make a Vector lab, Where user can pick as many vectors he may need to work with and change the magntiude of them, direction of them and See What is their additon, DotProduct, CrossProducts actually means </p>
+<p> We are on the mission to make all that labs that are the needs of a High school student. As a starting point We are currently trying to make a Vector lab, Where user can pick as many vectors he may need to work with and change the magntiude of them, direction of them and see what additon, subtraction , Dot-Product, Cross-Product actually means</p>
 <br>
 
 **Tech Stack Used :**
