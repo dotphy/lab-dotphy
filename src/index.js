@@ -9,3 +9,25 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+function getFullscreenElement() {
+  return (
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.mozFullscreenElement ||
+    document.msFullscreenElement
+  );
+}
+
+function toggle() {
+  if (getFullscreenElement()) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen().catch(console.log);
+  }
+}
+
+document.addEventListener("dblclick", () => {
+  console.log(toggle());
+});
+
