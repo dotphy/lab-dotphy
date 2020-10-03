@@ -8,26 +8,28 @@
   height: 50px;
   padding: 10px;
   margin: 20px 0px 20px 30px;
-  fill: #888;
+  fill: #666;
 }
 .icon:hover {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.185);
+  transition: 0.1s;
   fill: #eee;
 }
 .graph {
-  color: white;
+  fill: white;
 }
 
 .on {
-  background-color: #242526;
-  fill: white;
-  box-shadow: 0px 0px 10px 0px black;
-  border-radius: 10px;
+  fill: #666;
 }
 
 @media only screen and (max-width: 650px) {
   .controls {
     display: flex;
     flex-direction: row;
-    margin: 0px 10px;
+    margin: 0;
+    padding: 0px 10px 0px 10px;
+    width: 100vw;
   }
 }

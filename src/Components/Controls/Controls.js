@@ -5,6 +5,8 @@ import SvgPause from "../../Assets/pause.js";
 import SvgGraph from "../../Assets/graph.js";
 import SvgRepeat from "../../Assets/repeat.js";
 import SvgConfigure from "../../Assets/configure.js";
+import SvgFullScreen from "../../Assets/fullScreen.js";
+import { PinDropSharp } from "@material-ui/icons";
 
 //---------------Individual Control Components --------------
 
@@ -27,7 +29,7 @@ function Graph({ status, onClick }) {
 
 //-----------------------------------------------------------
 
-function Controls() {
+function Controls(props) {
   const [playStatus, setPlayStatus] = useState("pause ");
   const [configureStatus, setConfigureStatus] = useState("on");
   const [graphStatus, setGraphStatus] = useState("off");
@@ -48,6 +50,7 @@ function Controls() {
       <Repeat />
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
+      <SvgFullScreen onClick={props.handleFullScreenClick} className={"icon"} />
     </div>
   );
 }
