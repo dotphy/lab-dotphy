@@ -26,6 +26,9 @@ function Configure({ status, onClick }) {
 function Graph({ status, onClick }) {
   return <SvgGraph className={`icon ${status}`} onClick={onClick} />;
 }
+function FullScreen({ status, onClick }) {
+  return <SvgFullScreen className={`icon ${status}`} onClick={onClick} />;
+}
 
 //-----------------------------------------------------------
 
@@ -33,6 +36,7 @@ function Controls(props) {
   const [playStatus, setPlayStatus] = useState("pause ");
   const [configureStatus, setConfigureStatus] = useState("on");
   const [graphStatus, setGraphStatus] = useState("off");
+  const [fullScreenStatus, setFullScreenStatus] = useState(false);
 
   function handlePlayClick() {
     setPlayStatus(playStatus == "play" ? "pause" : "play");
@@ -43,6 +47,14 @@ function Controls(props) {
   function handleGraphClick() {
     setGraphStatus(graphStatus == "on" ? "off" : "on");
   }
+  function fullScreenClick() {
+    setFullScreenStatus(fullScreenStatus ? false : true);
+    if (fullScreenStatus) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
 
   return (
     <div className="controls">
@@ -50,7 +62,11 @@ function Controls(props) {
       <Repeat />
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
-      <SvgFullScreen onClick={props.handleFullScreenClick} className={"icon"} />
+      <FullScreen
+        status={fullScreenStatus}
+        onClick={fullScreenClick}
+        className={"icon"}
+      />
     </div>
   );
 }

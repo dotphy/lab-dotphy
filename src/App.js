@@ -32,7 +32,7 @@ class App extends React.Component {
       <div className="app">
         <Header />
         <div className="main">
-          <Controls handleFullScreenClick={this.handleFullScreenClick} />
+          <Controls />
           <Experiment />
         </div>
       </div>
