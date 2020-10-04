@@ -4,18 +4,18 @@
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
   height: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #47494b;
+  background: #111213;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #ffffff;
 }
 
 /* Handle on hover */
@@ -24,20 +24,59 @@
 }
 
 .vectorlab {
+  display: flex;
+  justify-content: space-between;
   color: white;
+  padding: 20px;
 }
 
 .displayvectors {
-  height: 200px;
-  width: 300px;
+  height: 70vh;
+  width: 400px;
   overflow-y: scroll;
+  background-color: #111213;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+  padding: 30px;
 }
 .displayvectorstab {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 }
 
+.displayvectorstab__name {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+  font-size: 2em;
+}
 .displayvectorstab__data {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.displayvectorstab__data__xcomp {
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(253, 253, 253, 0.658);
+}
+.displayvectorstab__data__ycomp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(253, 253, 253, 0.658);
+}
+
+.numbers {
+  font-family: LCD;
+}
+@media only screen and (max-width: 650px) {
+  .vectorlab {
+    display: flex;
+    flex-direction: column;
+  }
 }

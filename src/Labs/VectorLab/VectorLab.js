@@ -6,20 +6,25 @@ import Sketch from "./Sketch";
 import "./VectorLab.css";
 
 import AddIcon from "@material-ui/icons/Add";
+import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Button } from "@material-ui/core";
 
 function DisplayVectorsTab(props) {
   return (
     <div className="displayvectorstab">
-      <div className="displayvectorstab__name">{props.vectorsData.name} </div>
+      <div className="displayvectorstab__name">
+        <p>{props.vectorsData.name} </p>
+
+        <EditIcon />
+      </div>
       <div className="displayvectorstab__data">
         <div className="displayvectorstab__data__xcomp">
-          <p> X Comp</p>
-          {props.vectorsData.x}
+          <p> Horizontal Comp</p>
+          <p className="numbers">{String(props.vectorsData.x) + " units"}</p>
         </div>
         <div className="displayvectorstab__data__ycomp">
-          <p> Y Comp </p>
-          {props.vectorsData.y} j
+          <p> Vertical Comp </p>
+          <p className="numbers"> {String(props.vectorsData.y) + " units"}</p>
         </div>
       </div>
       <div></div>
@@ -38,7 +43,7 @@ function DisplayVectors(props) {
 
 export default function VectorLab() {
   const [vectorsData, setVectorsData] = useState([
-    { name: "vector", x: 20, y: 20, isMouseSensing: false, color: "white" },
+    { name: "Vector", x: 20, y: 20, isMouseSensing: false, color: "white" },
   ]);
   const [inputVector, setInputVector] = useState({ x: 0, y: 0 });
 
@@ -58,11 +63,13 @@ export default function VectorLab() {
   return (
     <div className="vectorlab">
       <P5Wrapper sketch={Sketch} vectorsData={vectorsData} />
-      <DisplayVectors vectorsData={vectorsData} />
-      <div className="vectorlab__input">
-        <Fab>
-          <AddIcon onClick={handleAddClick} />
-        </Fab>
+      <div style={{ marginRight: "30px" }}>
+        <DisplayVectors vectorsData={vectorsData} />
+        <div className="vectorlab__input">
+          <Fab>
+            <AddIcon onClick={handleAddClick} />
+          </Fab>
+        </div>
       </div>
     </div>
   );
