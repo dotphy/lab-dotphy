@@ -1,14 +1,10 @@
 export default function Sketch(p) {
   class MyVec {
-    constructor(x, y, isMouseSensing = false, c = "white") {
+    constructor(x, y, c = "white") {
       this.vec = p.createVector(x, y);
       this.c = c;
-      this.isMouseSensing = isMouseSensing;
     }
     draw = () => {
-      if (this.isMouseSensing) {
-        this.vec = p.createVector(p.mouseX, p.mouseY);
-      }
       drawArrow(p.createVector(0, 0), this.vec, this.c);
       p.stroke(this.c);
       p.line(0, 0, this.vec.x, this.vec.y);
@@ -19,6 +15,7 @@ export default function Sketch(p) {
       return new MyVec(res.x, res.y, false, "red");
     }
   }
+
   function drawArrow(base, vec, myColor) {
     p.push();
     p.stroke(myColor);
@@ -33,23 +30,25 @@ export default function Sketch(p) {
     p.pop();
   }
 
-  let v1;
-  let v2;
-  let res;
+  let vectorsData = [];
+  let vectors = [];
+
+  p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    vectorsData = props.vectorsData;
+  };
 
   p.setup = () => {
     p.createCanvas(window.innerWidth / 2, window.innerHeight / 2);
-    v1 = new MyVec(0, 0, true);
-    v2 = new MyVec(window.innerWidth / 8, window.innerHeight / 8, false);
   };
 
   p.draw = () => {
     p.background("#242526");
+    let inter = vectorsData.map((vectorData) => {
+      return new MyVec(vectorData["x"], vectorData["y"], vectorData["color"]);
+    });
 
-    v2.draw();
-    v1.draw();
-
-    res = v1.add(v2);
-    res.draw();
+    inter.map((vector) => {
+      vector.draw();
+    });
   };
 }

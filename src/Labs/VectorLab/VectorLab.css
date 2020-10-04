@@ -1,2 +1,43 @@
+@font-face {
+  font-family: LCD;
+  src: url("../../Assets/lcdfont.ttf");
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #47494b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .vectorlab {
+  color: white;
+}
+
+.displayvectors {
+  height: 200px;
+  width: 300px;
+  overflow-y: scroll;
+}
+.displayvectorstab {
+  display: flex;
+  flex-direction: column;
+}
+
+.displayvectorstab__data {
+  display: flex;
+  flex-direction: row;
 }
