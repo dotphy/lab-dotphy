@@ -27,7 +27,7 @@ function DisplayVectorsTab({
           hanldeXCompChange(e, newValue, vectorsData.id);
         }}
         min={0}
-        max={1000}
+        max={500}
         valueLabelDisplay="auto"
       />
     );
@@ -38,7 +38,7 @@ function DisplayVectorsTab({
           handleYCompChange(e, newValue, vectorsData.id);
         }}
         min={0}
-        max={1000}
+        max={500}
         valueLabelDisplay="auto"
       />
     );
