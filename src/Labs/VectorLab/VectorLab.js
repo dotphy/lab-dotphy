@@ -11,7 +11,12 @@ import { Fab, Button } from "@material-ui/core";
 
 function DisplayVectorsTab(props) {
   return (
-    <div className="displayvectorstab">
+    <div
+      className="displayvectorstab"
+      onClick={() => {
+        props.handleActiveVector(props.vectorsData.id);
+      }}
+    >
       <div className="displayvectorstab__name">
         <p>{props.vectorsData.name} </p>
 
@@ -35,7 +40,12 @@ function DisplayVectors(props) {
   return (
     <div className="displayvectors">
       {props.vectorsData.map((vectorsData) => {
-        return <DisplayVectorsTab vectorsData={vectorsData} />;
+        return (
+          <DisplayVectorsTab
+            vectorsData={vectorsData}
+            handleActiveVector={props.handleActiveVector}
+          />
+        );
       })}
     </div>
   );
@@ -43,8 +53,16 @@ function DisplayVectors(props) {
 
 export default function VectorLab() {
   const [vectorsData, setVectorsData] = useState([
-    { name: "Vector", x: 20, y: 20, isMouseSensing: false, color: "white" },
+    {
+      id: uuid(),
+      name: "Vector",
+      x: 20,
+      y: 20,
+      isMouseSensing: false,
+      color: "white",
+    },
   ]);
+  const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [inputVector, setInputVector] = useState({ x: 0, y: 0 });
 
   function handleAddClick(e) {
@@ -53,18 +71,30 @@ export default function VectorLab() {
     copyVectorsData.push({
       id: uuid(),
       name: "Vector",
-      x: Math.floor(Math.random() * 100),
-      y: Math.floor(Math.random() * 100),
+      x: Math.floor(Math.random() * 500),
+      y: Math.floor(Math.random() * 500),
       color: "white",
     });
     setVectorsData(copyVectorsData);
   }
 
+  function handleActiveVector(id) {
+    console.log("Click Handled with id " + id);
+    setActiveVectorId(id);
+  }
+
   return (
     <div className="vectorlab">
-      <P5Wrapper sketch={Sketch} vectorsData={vectorsData} />
+      <P5Wrapper
+        sketch={Sketch}
+        vectorsData={vectorsData}
+        activeVectorId={activeVectorId}
+      />
       <div style={{ marginRight: "30px" }}>
-        <DisplayVectors vectorsData={vectorsData} />
+        <DisplayVectors
+          vectorsData={vectorsData}
+          handleActiveVector={handleActiveVector}
+        />
         <div className="vectorlab__input">
           <Fab>
             <AddIcon onClick={handleAddClick} />

@@ -32,9 +32,14 @@ export default function Sketch(p) {
 
   let vectorsData = [];
   let vectors = [];
+  let activeVectorData;
+  let activeVector;
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     vectorsData = props.vectorsData;
+    activeVectorData = props.vectorsData.filter((vector) => {
+      return vector.id == props.activeVectorId;
+    })[0];
   };
 
   p.setup = () => {
@@ -47,8 +52,15 @@ export default function Sketch(p) {
       return new MyVec(vectorData["x"], vectorData["y"], vectorData["color"]);
     });
 
+    activeVector = new MyVec(
+      activeVectorData["x"],
+      activeVectorData["y"],
+      "red"
+    );
+
     inter.map((vector) => {
       vector.draw();
     });
+    activeVector.draw();
   };
 }

@@ -43,8 +43,12 @@
   display: flex;
   flex-direction: column;
   margin-top: 5px;
+  padding: 10px;
+  border-radius: 3px;
 }
-
+.displayvectorstab:hover {
+  background-color: #232323;
+}
 .displayvectorstab__name {
   display: flex;
   justify-content: space-between !important;
@@ -55,6 +59,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 30px;
+  font-size: 13px;
 }
 .displayvectorstab__data__xcomp {
   display: flex;
