@@ -55,7 +55,7 @@ export default function Sketch(p) {
     activeVector = new MyVec(
       activeVectorData["x"],
       activeVectorData["y"],
-      "red"
+      "#0971F1"
     );
 
     inter.map((vector) => {

@@ -7,43 +7,86 @@ import "./VectorLab.css";
 
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
-import { Fab, Button } from "@material-ui/core";
+import { Fab, Slider } from "@material-ui/core";
 
-function DisplayVectorsTab(props) {
+function DisplayVectorsTab({
+  vectorsData,
+  activeVectorId,
+  handleActiveVector,
+  hanldeXCompChange,
+  handleYCompChange,
+}) {
+  let xComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
+  let yComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
+
+  if (vectorsData.id == activeVectorId) {
+    xComp = (
+      <Slider
+        defaultValue={vectorsData.x}
+        onChange={(e, newValue) => {
+          hanldeXCompChange(e, newValue, vectorsData.id);
+        }}
+        min={0}
+        max={1000}
+        valueLabelDisplay="auto"
+      />
+    );
+    yComp = (
+      <Slider
+        defaultValue={vectorsData.y}
+        onChange={(e, newValue) => {
+          handleYCompChange(e, newValue, vectorsData.id);
+        }}
+        min={0}
+        max={1000}
+        valueLabelDisplay="auto"
+      />
+    );
+  }
+
   return (
     <div
       className="displayvectorstab"
       onClick={() => {
-        props.handleActiveVector(props.vectorsData.id);
+        handleActiveVector(vectorsData.id);
       }}
     >
       <div className="displayvectorstab__name">
-        <p>{props.vectorsData.name} </p>
+        <p>{vectorsData.name} </p>
 
         <EditIcon />
       </div>
       <div className="displayvectorstab__data">
         <div className="displayvectorstab__data__xcomp">
           <p> Horizontal Comp</p>
-          <p className="numbers">{String(props.vectorsData.x) + " units"}</p>
+          {xComp}
         </div>
         <div className="displayvectorstab__data__ycomp">
           <p> Vertical Comp </p>
-          <p className="numbers"> {String(props.vectorsData.y) + " units"}</p>
+          {yComp}
         </div>
       </div>
       <div></div>
     </div>
   );
 }
-function DisplayVectors(props) {
+function DisplayVectors({
+  vectorsData,
+  activeVectorId,
+  handleActiveVector,
+  hanldeXCompChange,
+  handleYCompChange,
+}) {
   return (
     <div className="displayvectors">
-      {props.vectorsData.map((vectorsData) => {
+      {vectorsData.map((vectorsData) => {
         return (
           <DisplayVectorsTab
             vectorsData={vectorsData}
-            handleActiveVector={props.handleActiveVector}
+            activeVectorId={activeVectorId}
+            handleActiveVector={handleActiveVector}
+            hanldeXCompChange={hanldeXCompChange}
+            handleYCompChange={handleYCompChange}
           />
         );
       })}
@@ -79,8 +122,23 @@ export default function VectorLab() {
   }
 
   function handleActiveVector(id) {
-    console.log("Click Handled with id " + id);
     setActiveVectorId(id);
+  }
+  function hanldeXCompChange(e, newValue, id) {
+    let copyVectorsData = vectorsData.slice();
+
+    let inter = copyVectorsData.find((vector) => {
+      return vector.id == id;
+    });
+    inter.x = newValue;
+  }
+  function handleYCompChange(e, newValue, id) {
+    let copyVectorsData = vectorsData.slice();
+
+    let inter = copyVectorsData.find((vector) => {
+      return vector.id == id;
+    });
+    inter.y = newValue;
   }
 
   return (
@@ -93,7 +151,10 @@ export default function VectorLab() {
       <div style={{ marginRight: "30px" }}>
         <DisplayVectors
           vectorsData={vectorsData}
+          activeVectorId={activeVectorId}
           handleActiveVector={handleActiveVector}
+          hanldeXCompChange={hanldeXCompChange}
+          handleYCompChange={handleYCompChange}
         />
         <div className="vectorlab__input">
           <Fab>
