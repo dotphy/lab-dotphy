@@ -20,7 +20,7 @@ function DisplayVectorsTab({
   //Conditionally Rendered Compoenents ...
 
   let xComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
-  let yComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
+  let yComp = <p className="numbers">{String(vectorsData.y) + " units"}</p>;
   let operations = <div> </div>;
   if (vectorsData.id == activeVectorId) {
     xComp = (
@@ -45,7 +45,12 @@ function DisplayVectorsTab({
         valueLabelDisplay="auto"
       />
     );
-    operations = <Operation />;
+    operations = (
+      <div className="displayvectorstab__data__operations">
+        <p> Operations</p>
+        <Operation />
+      </div>
+    );
   }
 
   return (
@@ -70,10 +75,7 @@ function DisplayVectorsTab({
           {yComp}
         </div>
 
-        <div className="displayvectorstab__data__operations">
-          <p> Operations</p>
-          {operations}
-        </div>
+        <div>{operations}</div>
       </div>
       <div></div>
     </div>
