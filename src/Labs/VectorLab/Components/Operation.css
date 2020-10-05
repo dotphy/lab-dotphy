@@ -1,0 +1,13 @@
+.operations {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.operations__add {
+  width: 10px;
+  height: 10px;
+}
+.operations__cross__icon {
+  transform: rotate(43deg) !important;
+}

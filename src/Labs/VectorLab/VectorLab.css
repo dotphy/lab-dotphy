@@ -35,9 +35,9 @@
   width: 400px;
   overflow-y: scroll;
   background-color: #111213;
-  border: 0.5px solid gray;
+
   border-radius: 5px;
-  padding: 30px;
+  padding: 10px 5px;
 }
 .displayvectorstab {
   display: flex;

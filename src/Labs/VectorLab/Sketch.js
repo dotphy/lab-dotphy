@@ -1,11 +1,17 @@
 export default function Sketch(p) {
   class MyVec {
-    constructor(x, y, c = "white") {
+    constructor(x, y, c = "white", label = "") {
       this.vec = p.createVector(x, y);
       this.c = c;
+      this.label = label;
     }
     draw = () => {
       drawArrow(p.createVector(0, 0), this.vec, this.c);
+      p.push();
+      p.stroke("white");
+      p.fill("white");
+      p.text(this.label, this.vec.x / 2, this.vec.y / 2);
+      p.pop();
       p.stroke(this.c);
       p.line(0, 0, this.vec.x, this.vec.y);
     };
@@ -48,6 +54,9 @@ export default function Sketch(p) {
 
   p.draw = () => {
     p.background("#242526");
+    p.noStroke();
+    p.fill("black");
+    p.circle(0, 0, 20, 20);
     let inter = vectorsData.map((vectorData) => {
       return new MyVec(vectorData["x"], vectorData["y"], vectorData["color"]);
     });
@@ -55,7 +64,8 @@ export default function Sketch(p) {
     activeVector = new MyVec(
       activeVectorData["x"],
       activeVectorData["y"],
-      "#0971F1"
+      "#0971F1",
+      activeVectorData["name"]
     );
 
     inter.map((vector) => {
