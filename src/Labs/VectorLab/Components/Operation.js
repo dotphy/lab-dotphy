@@ -7,15 +7,16 @@ import AddIcon from "@material-ui/icons/Add";
 export default function Operations(props) {
   return (
     <div className="operations">
-      <Fab className="operations__add">
-        <AddIcon />
-      </Fab>
-      <Fab className="operations__cross">
-        <AddIcon className="operations__cross__icon" />
-      </Fab>
-      <Fab className="operations__dot">
-        <IconButton> . </IconButton>
-      </Fab>
+      <IconButton color="secondary">
+        <AddIcon className="operations__add" />
+      </IconButton>
+      <IconButton color="secondary">
+        <AddIcon className="operations__cross__icon operation__cross" />
+      </IconButton>
+
+      <IconButton className="operations__dot" color="secondary">
+        .
+      </IconButton>
     </div>
   );
 }

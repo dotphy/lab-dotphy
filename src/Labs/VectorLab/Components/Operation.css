@@ -11,3 +11,6 @@
 .operations__cross__icon {
   transform: rotate(43deg) !important;
 }
+.operations__dot {
+  font-size: 2em;
+}

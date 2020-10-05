@@ -17,10 +17,11 @@ function DisplayVectorsTab({
   hanldeXCompChange,
   handleYCompChange,
 }) {
+  //Conditionally Rendered Compoenents ...
+
   let xComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
   let yComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
   let operations = <div> </div>;
-
   if (vectorsData.id == activeVectorId) {
     xComp = (
       <Slider
@@ -68,12 +69,17 @@ function DisplayVectorsTab({
           <p> Vertical Comp </p>
           {yComp}
         </div>
-        <div className="displayvectorstab__data__operations">{operations}</div>
+
+        <div className="displayvectorstab__data__operations">
+          <p> Operations</p>
+          {operations}
+        </div>
       </div>
       <div></div>
     </div>
   );
 }
+
 function DisplayVectors({
   vectorsData,
   activeVectorId,
@@ -109,18 +115,18 @@ export default function VectorLab() {
       color: "white",
     },
   ]);
-  let x = 1;
+  const [specialVectorsData, setSpecialVectorsData] = useState([]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
-  //#TODO:Add New Vectors Based on user Input
-  const [inputVector, setInputVector] = useState({ x: 0, y: 0 });
+  const [x, setX] = useState(2);
 
   function handleAddClick(e) {
     //Add a new Vector Randomly
     e.preventDefault();
+    setX(x + 1);
     let copyVectorsData = vectorsData.slice();
     copyVectorsData.push({
       id: uuid(),
-      name: "V" + String(x++),
+      name: "V" + String(x),
       x: Math.floor(Math.random() * 500),
       y: Math.floor(Math.random() * 500),
       color: "white",
@@ -164,8 +170,9 @@ export default function VectorLab() {
           handleYCompChange={handleYCompChange}
         />
         <div className="vectorlab__input">
-          <Fab>
-            <AddIcon onClick={handleAddClick} />
+          <Fab onClick={handleAddClick} variant="extended">
+            <AddIcon />
+            Add A New Vector
           </Fab>
         </div>
       </div>
