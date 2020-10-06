@@ -1,7 +1,8 @@
 .operations__set {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: 10px;
+  align-items: center;
 }
 
 .operations__set__add {
@@ -12,5 +13,5 @@
   transform: rotate(43deg) !important;
 }
 .operations__set__dot {
-  font-size: 2em;
+  font-size: 5em;
 }

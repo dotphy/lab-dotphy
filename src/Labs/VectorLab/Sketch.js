@@ -3,56 +3,32 @@ export default function Sketch(p) {
   let vectors = [];
   let activeVectorData;
   let activeVector;
-  let specialVectorsData = [];
-  let specialVectors = [];
+  let operationedVectorsData = [];
+  let operationedVectors = [];
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     vectorsData = props.vectorsData;
-    specialVectorsData = props.specialVectorsData;
+    operationedVectorsData = props.operationedVectorsData;
     activeVectorData = props.vectorsData.filter((vector) => {
       return vector.id == props.activeVectorId;
     })[0];
   };
 
+  //SETUP ....
   p.setup = () => {
     p.createCanvas(window.innerWidth / 2, window.innerHeight / 2);
   };
 
+  //Draw.....
   p.draw = () => {
     p.background("#242526");
-
-    p.translate(10, window.innerHeight / 2 - 10);
-    p.scale(1, -1);
-
-    p.push();
-    p.strokeWeight(3);
-    p.stroke("white");
-    p.line(20, 0, 20, window.innerHeight / 2);
-    p.line(0, 20, window.innerWidth / 2, 20);
-    p.pop();
-
-    p.noStroke();
-    p.fill("black");
-
-    //---- Initialize Vectors and Draw them------
-    vectors = vectorsData.map((vectorData) => {
-      return new MyVec(vectorData["x"], vectorData["y"], vectorData["color"]);
-    });
-    vectors.map((vector) => {
-      vector.draw();
-    });
-
-    //----- Initialalize Special Vectors and Draw Those ----
-
-    // ---- Initialize Active Vector and Draw That----
-    activeVector = new MyVec(
-      activeVectorData["x"],
-      activeVectorData["y"],
-      "#0971F1",
-      activeVectorData["name"]
-    );
-    activeVector.draw();
+    shiftOrigin();
+    drawAxes();
+    drawVectors();
+    drawActiveVectors();
   };
+
+  // ------------------HELPER DRAWS------------------
 
   class MyVec {
     constructor(x, y, c = "white", label = "") {
@@ -95,5 +71,38 @@ export default function Sketch(p) {
     p.translate(vec.mag() - arrowSize, 0);
     p.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
     p.pop();
+  }
+
+  function drawAxes() {
+    p.push();
+    p.strokeWeight(3);
+    p.stroke("white");
+    p.line(20, 0, 20, window.innerHeight / 2);
+    p.line(0, 20, window.innerWidth / 2, 20);
+    p.pop();
+  }
+
+  function shiftOrigin() {
+    p.translate(10, window.innerHeight / 2 - 10);
+    p.scale(1, -1);
+  }
+
+  function drawVectors() {
+    vectors = vectorsData.map((vectorData) => {
+      return new MyVec(vectorData["x"], vectorData["y"], vectorData["color"]);
+    });
+    vectors.map((vector) => {
+      vector.draw();
+    });
+  }
+
+  function drawActiveVectors() {
+    activeVector = new MyVec(
+      activeVectorData["x"],
+      activeVectorData["y"],
+      "#0971F1",
+      activeVectorData["name"]
+    );
+    activeVector.draw();
   }
 }
