@@ -47,7 +47,6 @@ function DisplayVectorsTab({
     );
     operations = (
       <div className="displayvectorstab__data__operations">
-        <p> Operations</p>
         <Operation />
       </div>
     );

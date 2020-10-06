@@ -20,6 +20,17 @@ export default function Sketch(p) {
 
   p.draw = () => {
     p.background("#242526");
+
+    p.translate(10, window.innerHeight / 2 - 10);
+    p.scale(1, -1);
+
+    p.push();
+    p.strokeWeight(3);
+    p.stroke("white");
+    p.line(20, 0, 20, window.innerHeight / 2);
+    p.line(0, 20, window.innerWidth / 2, 20);
+    p.pop();
+
     p.noStroke();
     p.fill("black");
 
@@ -48,16 +59,22 @@ export default function Sketch(p) {
       this.vec = p.createVector(x, y);
       this.c = c;
       this.label = label;
+      this.x = 0;
     }
     draw = () => {
-      drawArrow(p.createVector(0, 0), this.vec, this.c);
       p.push();
+      p.translate(20, 20);
       p.stroke("white");
       p.fill("white");
-      p.text(this.label, this.vec.x / 2, this.vec.y / 2);
+      p.push();
+      p.scale(1, -1);
+      p.text(this.label, this.vec.x / 2 + 10, -this.vec.y / 2 + 10);
       p.pop();
+
+      drawArrow(p.createVector(0, 0), this.vec, this.c);
       p.stroke(this.c);
       p.line(0, 0, this.vec.x, this.vec.y);
+      p.pop();
     };
     add(vec2) {
       let copyVec1 = this.vec;
