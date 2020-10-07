@@ -11,7 +11,7 @@
   .main {
     display: flex;
     flex-direction: column-reverse;
-    height: 90vh;
+    height: 80vh;
     justify-content: space-between;
     align-items: center;
   }

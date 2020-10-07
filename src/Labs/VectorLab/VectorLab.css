@@ -95,8 +95,11 @@
   font-family: LCD;
 }
 @media only screen and (max-width: 700px) {
+  .vectorlab {
+    padding: 10px 0px 0px 0px;
+  }
   .displayvectors {
-    top: 435px;
+    top: 365px;
     left: 20px;
     position: absolute;
     height: 210px;
@@ -105,5 +108,9 @@
   .displayvectorstab {
     padding: 0px;
     margin-top: 0px;
+    z-index: 12;
+  }
+  .vectorlab__input {
+    z-index: 999;
   }
 }
