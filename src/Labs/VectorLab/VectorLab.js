@@ -162,7 +162,7 @@ export default function VectorLab() {
         vectorsData={vectorsData}
         activeVectorId={activeVectorId}
       />
-      <div style={{ marginRight: "30px" }}>
+      <div style={{ marginRight: "10px" }}>
         <DisplayVectors
           vectorsData={vectorsData}
           activeVectorId={activeVectorId}
@@ -172,8 +172,7 @@ export default function VectorLab() {
         />
         <div className="vectorlab__input">
           <Fab onClick={handleAddClick} variant="extended">
-            <AddIcon />
-            Add A New Vector
+            <AddIcon className="vactorlab_input_icon" />
           </Fab>
         </div>
       </div>
