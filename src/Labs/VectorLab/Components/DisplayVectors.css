@@ -1,0 +1,105 @@
+.displayvectors {
+  height: 70vh;
+  width: 400px;
+  overflow-y: scroll;
+  background-color: #111213;
+
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.displayvectorstab {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.displayvectorstab:hover {
+  background-color: #232323;
+}
+.displayvectorstab__name {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+  font-size: 2em;
+}
+.displayvectorstab__name__input {
+  color: white;
+}
+.displayvectors__name__icon {
+  color: white;
+}
+
+.displayvectorstab__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 30px;
+  font-size: 13px;
+}
+.displayvectorstab__data__xcomp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(253, 253, 253, 0.658);
+}
+.displayvectorstab__data__ycomp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(253, 253, 253, 0.658);
+}
+.displayvectorstab__data__operations {
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(253, 253, 253, 0.658);
+}
+
+.numbers {
+  font-family: LCD;
+}
+@media only screen and (max-width: 700px) {
+  .displayvectors {
+    top: 365px;
+    left: 20px;
+    position: absolute;
+    height: 210px;
+    width: 90vw;
+  }
+
+  .displayvectorstab {
+    padding: 0px;
+    margin-top: 0px;
+    z-index: 12;
+  }
+}
+
+@font-face {
+  font-family: LCD;
+  src: url("../../../Assets/lcdfont.ttf");
+}
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #111213;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

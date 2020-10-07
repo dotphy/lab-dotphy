@@ -31,6 +31,9 @@ export default function Sketch(p) {
     drawAxes();
     drawVectors();
     drawActiveVectors();
+    try {
+      vectors[0].add(vectors[1]);
+    } catch {}
   };
 
   // ------------------HELPER DRAWS------------------
@@ -60,7 +63,8 @@ export default function Sketch(p) {
     add(vec2) {
       let copyVec1 = this.vec;
       let res = copyVec1.add(vec2.vec);
-      return new MyVec(res.x, res.y, false, "red");
+      res = new MyVec(res.x, res.y, "red", `${this.label} + ${vec2.label}`);
+      res.draw();
     }
   }
 

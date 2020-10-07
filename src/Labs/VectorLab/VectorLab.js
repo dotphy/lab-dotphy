@@ -1,13 +1,13 @@
-import { Vector } from "p5";
 import React, { useState } from "react";
 import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
-import Operation from "./Components/Operation";
+
+import DisplayVectors from "./Components/DisplayVectors";
 import "./VectorLab.css";
 
 import AddIcon from "@material-ui/icons/Add";
-import EditIcon from "@material-ui/icons/Edit";
+
 import { Fab, Slider } from "@material-ui/core";
 
 let displaySize = {
@@ -15,101 +15,6 @@ let displaySize = {
     window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
   height: window.innerHeight / 2,
 };
-
-function DisplayVectorsTab({
-  vectorsData,
-  activeVectorId,
-  handleActiveVector,
-  hanldeXCompChange,
-  handleYCompChange,
-}) {
-  //Conditionally Rendered Compoenents ...
-
-  let xComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
-  let yComp = <p className="numbers">{String(vectorsData.y) + " units"}</p>;
-  let operations = <div> </div>;
-  if (vectorsData.id == activeVectorId) {
-    xComp = (
-      <Slider
-        defaultValue={vectorsData.x}
-        onChange={(e, newValue) => {
-          hanldeXCompChange(e, newValue, vectorsData.id);
-        }}
-        min={0}
-        max={displaySize.width - 100}
-        valueLabelDisplay="auto"
-      />
-    );
-    yComp = (
-      <Slider
-        defaultValue={vectorsData.y}
-        onChange={(e, newValue) => {
-          handleYCompChange(e, newValue, vectorsData.id);
-        }}
-        min={0}
-        max={displaySize.height - 100}
-        valueLabelDisplay="auto"
-      />
-    );
-    operations = (
-      <div className="displayvectorstab__data__operations">
-        <Operation />
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className="displayvectorstab"
-      onClick={() => {
-        handleActiveVector(vectorsData.id);
-      }}
-    >
-      <div className="displayvectorstab__name">
-        <p>{vectorsData.name} </p>
-
-        <EditIcon />
-      </div>
-      <div className="displayvectorstab__data">
-        <div className="displayvectorstab__data__xcomp">
-          <p> Horizontal Component</p>
-          {xComp}
-        </div>
-        <div className="displayvectorstab__data__ycomp">
-          <p> Vertical Component </p>
-          {yComp}
-        </div>
-
-        <div>{operations}</div>
-      </div>
-      <div></div>
-    </div>
-  );
-}
-
-function DisplayVectors({
-  vectorsData,
-  activeVectorId,
-  handleActiveVector,
-  hanldeXCompChange,
-  handleYCompChange,
-}) {
-  return (
-    <div className="displayvectors">
-      {vectorsData.map((vectorsData) => {
-        return (
-          <DisplayVectorsTab
-            vectorsData={vectorsData}
-            activeVectorId={activeVectorId}
-            handleActiveVector={handleActiveVector}
-            hanldeXCompChange={hanldeXCompChange}
-            handleYCompChange={handleYCompChange}
-          />
-        );
-      })}
-    </div>
-  );
-}
 
 export default function VectorLab() {
   const [vectorsData, setVectorsData] = useState([
@@ -124,6 +29,7 @@ export default function VectorLab() {
   ]);
   const [specialVectorsData, setSpecialVectorsData] = useState([]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
+  const [operationedVectorsData, setOperationedVectorsData] = useState([]);
   const [x, setX] = useState(2);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
 
@@ -168,6 +74,7 @@ export default function VectorLab() {
         sketch={Sketch}
         vectorsData={vectorsData}
         activeVectorId={activeVectorId}
+        operationedVectorsData={operationedVectorsData}
       />
       <div style={{ marginRight: "10px" }}>
         <DisplayVectors
