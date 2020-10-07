@@ -10,6 +10,12 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
 
+let displaySize = {
+  width:
+    window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
+  height: window.innerHeight / 2,
+};
+
 function DisplayVectorsTab({
   vectorsData,
   activeVectorId,
@@ -30,7 +36,7 @@ function DisplayVectorsTab({
           hanldeXCompChange(e, newValue, vectorsData.id);
         }}
         min={0}
-        max={500}
+        max={displaySize.width - 100}
         valueLabelDisplay="auto"
       />
     );
@@ -41,7 +47,7 @@ function DisplayVectorsTab({
           handleYCompChange(e, newValue, vectorsData.id);
         }}
         min={0}
-        max={500}
+        max={displaySize.height - 100}
         valueLabelDisplay="auto"
       />
     );
@@ -66,11 +72,11 @@ function DisplayVectorsTab({
       </div>
       <div className="displayvectorstab__data">
         <div className="displayvectorstab__data__xcomp">
-          <p> Horizontal Comp</p>
+          <p> Horizontal Component</p>
           {xComp}
         </div>
         <div className="displayvectorstab__data__ycomp">
-          <p> Vertical Comp </p>
+          <p> Vertical Component </p>
           {yComp}
         </div>
 
@@ -119,6 +125,7 @@ export default function VectorLab() {
   const [specialVectorsData, setSpecialVectorsData] = useState([]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [x, setX] = useState(2);
+  const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
 
   function handleAddClick(e) {
     //Add a new Vector Randomly
@@ -128,8 +135,8 @@ export default function VectorLab() {
     copyVectorsData.push({
       id: uuid(),
       name: "V" + String(x),
-      x: Math.floor(Math.random() * 500),
-      y: Math.floor(Math.random() * 500),
+      x: Math.floor(Math.random() * displaySize.width),
+      y: Math.floor(Math.random() * displaySize.height),
       color: "white",
     });
     setVectorsData(copyVectorsData);
@@ -171,8 +178,17 @@ export default function VectorLab() {
           handleYCompChange={handleYCompChange}
         />
         <div className="vectorlab__input">
-          <Fab onClick={handleAddClick} variant="extended">
+          <Fab
+            onClick={handleAddClick}
+            variant="extended"
+            color="secondary"
+            onMouseEnter={() => {
+              setIsMouseInAddIcon(true);
+            }}
+            onMouseLeave={() => setIsMouseInAddIcon(false)}
+          >
             <AddIcon className="vactorlab_input_icon" />
+            {isMouseInAddIcon && "Add a new Vector"}
           </Fab>
         </div>
       </div>

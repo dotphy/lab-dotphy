@@ -16,7 +16,7 @@ class App extends React.Component {
   }
   componentDidUpdate() {
     if (this.state.isFullScreenOn) {
-      document.documentElement.requestFullscreen();
+      document.querySelector(".main").requestFullscreen();
     } else {
       document.exitFullscreen();
     }

@@ -5,6 +5,11 @@ export default function Sketch(p) {
   let activeVector;
   let operationedVectorsData = [];
   let operationedVectors = [];
+  let displaySize = {
+    width:
+      window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
+    height: window.innerHeight / 2,
+  };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     vectorsData = props.vectorsData;
@@ -16,7 +21,7 @@ export default function Sketch(p) {
 
   //SETUP ....
   p.setup = () => {
-    p.createCanvas(window.innerWidth / 2, window.innerHeight / 2);
+    p.createCanvas(displaySize.width, displaySize.height);
   };
 
   //Draw.....
@@ -77,8 +82,8 @@ export default function Sketch(p) {
     p.push();
     p.strokeWeight(3);
     p.stroke("white");
-    p.line(20, 0, 20, window.innerHeight / 2);
-    p.line(0, 20, window.innerWidth / 2, 20);
+    p.line(20, 0, 20, displaySize.height);
+    p.line(0, 20, displaySize.width, 20);
     p.pop();
   }
 
@@ -103,6 +108,20 @@ export default function Sketch(p) {
       "#0971F1",
       activeVectorData["name"]
     );
+    p.push();
+    p.translate(10, 10);
+
+    p.stroke("white");
+    p.fill("white");
+    p.push();
+    p.scale(1, -1);
+    p.text(`${activeVector.vec.y} ---`, -20, -activeVectorData.y - 10);
+    p.pop();
+    p.push();
+    p.scale(1, -1);
+    p.text(`| \n${activeVector.vec.x}`, activeVector.vec.x + 10, 0);
+    p.pop();
+    p.pop();
     activeVector.draw();
   }
 }
