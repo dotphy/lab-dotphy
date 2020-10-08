@@ -27,10 +27,12 @@
 @media only screen and (max-width: 650px) {
   .controls {
     display: flex;
+    position: absolute;
+    top: 465px;
     flex-direction: row;
     justify-content: space-between;
     margin: 10px 30px 10px 30px;
-    padding: 0px 10px 0px 10px;
+    padding: 100px 10px 0px 10px;
     width: 100vw;
   }
 
