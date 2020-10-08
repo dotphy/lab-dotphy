@@ -31,9 +31,6 @@ export default function Sketch(p) {
     drawAxes();
     drawVectors();
     drawActiveVectors();
-    try {
-      vectors[0].add(vectors[1]);
-    } catch {}
   };
 
   // ------------------HELPER DRAWS------------------
