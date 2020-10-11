@@ -1,23 +1,13 @@
-.operations__set {
+.operations {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
   align-items: center;
+  width: 100%;
+}
+.operations__label {
+  display: flex;
 }
 
-.operations__set__add {
-  width: 10px;
-  height: 10px;
-}
-.operations__set__cross__icon {
-  transform: rotate(43deg) !important;
-}
-.operations__set__dot {
-  font-size: 5em;
-}
-
-@media only screen and (max-width: 700px) {
-  .operations {
-    font-size: 8px;
-  }
+.button {
+  color: "white";
 }

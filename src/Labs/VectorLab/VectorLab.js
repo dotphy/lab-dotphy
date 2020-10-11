@@ -10,14 +10,29 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
 
-let displaySize = {
+
+
+const DISPLAY_SIZE = {
   width:
     window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
   height: window.innerHeight / 2,
 };
+function randomVector(name){
+  return({
+    id: uuid(),
+    name: name ,
+    x: Math.floor(Math.random() * DISPLAY_SIZE.width),
+    y: Math.floor(Math.random() * DISPLAY_SIZE.height),
+    color: "white",
+    operations: [],
+  })
+}
+function getVectorData(id, allObjs){
+  return allObjs.find((obj) => {return obj.id == id})
+}
 
 function DisplayVectorsTab({
-  vectorsData,
+  vectorData,
   activeVectorId,
   handleActiveVector,
   hanldeXCompChange,
@@ -25,35 +40,35 @@ function DisplayVectorsTab({
 }) {
   //Conditionally Rendered Compoenents ...
 
-  let xComp = <p className="numbers">{String(vectorsData.x) + " units"}</p>;
-  let yComp = <p className="numbers">{String(vectorsData.y) + " units"}</p>;
+  let xComp = <p className="numbers">{String(vectorData.x) + " units"}</p>;
+  let yComp = <p className="numbers">{String(vectorData.y) + " units"}</p>;
   let operations = <div> </div>;
-  if (vectorsData.id == activeVectorId) {
+  if (vectorData.id == activeVectorId) {
     xComp = (
       <Slider
-        defaultValue={vectorsData.x}
+        defaultValue={vectorData.x}
         onChange={(e, newValue) => {
-          hanldeXCompChange(e, newValue, vectorsData.id);
+          hanldeXCompChange(e, newValue, vectorData.id);
         }}
         min={0}
-        max={displaySize.width - 100}
+        max={DISPLAY_SIZE.width - 100}
         valueLabelDisplay="auto"
       />
     );
     yComp = (
       <Slider
-        defaultValue={vectorsData.y}
+        defaultValue={vectorData.y}
         onChange={(e, newValue) => {
-          handleYCompChange(e, newValue, vectorsData.id);
+          handleYCompChange(e, newValue, vectorData.id);
         }}
         min={0}
-        max={displaySize.height - 100}
+        max={DISPLAY_SIZE.height - 100}
         valueLabelDisplay="auto"
       />
     );
     operations = (
       <div className="displayvectorstab__data__operations">
-        <Operation />
+        <Operation vectorData = {vectorData}/>
       </div>
     );
   }
@@ -62,11 +77,11 @@ function DisplayVectorsTab({
     <div
       className="displayvectorstab"
       onClick={() => {
-        handleActiveVector(vectorsData.id);
+        handleActiveVector(vectorData.id);
       }}
     >
       <div className="displayvectorstab__name">
-        <p>{vectorsData.name} </p>
+        <p>{vectorData.name} </p>
 
         <EditIcon />
       </div>
@@ -82,10 +97,9 @@ function DisplayVectorsTab({
           <p> Vertical Component </p>
           {yComp}
         </div>
-
         <div>{operations}</div>
       </div>
-      <div></div>
+     
     </div>
   );
 }
@@ -99,10 +113,9 @@ function DisplayVectors({
 }) {
   return (
     <div className="displayvectors">
-      {vectorsData.map((vectorsData) => {
-        return (
-          <DisplayVectorsTab
-            vectorsData={vectorsData}
+      {vectorsData.map((vectorData) => {
+        return (          <DisplayVectorsTab
+            vectorData={vectorData}
             activeVectorId={activeVectorId}
             handleActiveVector={handleActiveVector}
             hanldeXCompChange={hanldeXCompChange}
@@ -114,35 +127,29 @@ function DisplayVectors({
   );
 }
 
+
 export default function VectorLab() {
+  const [num, setNum] = useState(2);
   const [vectorsData, setVectorsData] = useState([
-    {
-      id: uuid(),
-      name: "V1",
-      x: 20,
-      y: 20,
-      isMouseSensing: false,
-      color: "white",
-    },
+    randomVector("V1"),
   ]);
-  const [specialVectorsData, setSpecialVectorsData] = useState([]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
-  const [x, setX] = useState(2);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
 
-  function handleAddClick(e) {
+
+  function addNewVector(e) {
     //Add a new Vector Randomly
+    setNum(num+1)
     e.preventDefault();
-    setX(x + 1);
     let copyVectorsData = vectorsData.slice();
-    copyVectorsData.push({
-      id: uuid(),
-      name: "V" + String(x),
-      x: Math.floor(Math.random() * displaySize.width),
-      y: Math.floor(Math.random() * displaySize.height),
-      color: "white",
-    });
+    copyVectorsData.push(randomVector("V"+String(num)));
     setVectorsData(copyVectorsData);
+  }
+
+  function addOperation(e,vec1, vec2){
+    e.preventDefault();
+
+  
   }
 
   function handleActiveVector(id) {
@@ -150,19 +157,20 @@ export default function VectorLab() {
   }
 
   function hanldeXCompChange(e, newValue, id) {
+   
     let copyVectorsData = vectorsData.slice();
-    let inter = copyVectorsData.find((vector) => {
+    copyVectorsData.find((vector) => {
       return vector.id == id;
-    });
-    inter.x = newValue;
+    }).x = newValue;
+    
   }
 
   function handleYCompChange(e, newValue, id) {
     let copyVectorsData = vectorsData.slice();
-    let inter = copyVectorsData.find((vector) => {
+    copyVectorsData.find((vector) => {
       return vector.id == id;
-    });
-    inter.y = newValue;
+    }).y = newValue;
+   
   }
 
   return (
@@ -182,7 +190,7 @@ export default function VectorLab() {
         />
         <div className="vectorlab__input">
           <Fab
-            onClick={handleAddClick}
+            onClick={addNewVector}
             variant="extended"
             color="secondary"
             onMouseEnter={() => {
