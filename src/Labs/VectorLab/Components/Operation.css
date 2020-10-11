@@ -8,6 +8,29 @@
   display: flex;
 }
 
+.operationset__inp {
+  display: flex;
+  margin-right: 10%;
+  align-items: center;
+}
+.operationset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .button {
   color: "white";
+}
+
+.vectorInp {
+  border-radius: 10px;
+  padding: 10px !important;
+  color: white !important;
+  background-color: #242526 !important;
+}
+
+.menuitem {
+  color: white !important;
+  background: #242526 !important;
 }

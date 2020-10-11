@@ -17,6 +17,7 @@ const DISPLAY_SIZE = {
     window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
   height: window.innerHeight / 2,
 };
+
 function randomVector(name){
   return({
     id: uuid(),
@@ -28,15 +29,18 @@ function randomVector(name){
   })
 }
 function getVectorData(id, allObjs){
+  
   return allObjs.find((obj) => {return obj.id == id})
 }
 
 function DisplayVectorsTab({
   vectorData,
+  vectorsData,
   activeVectorId,
   handleActiveVector,
   hanldeXCompChange,
   handleYCompChange,
+  addOperation,
 }) {
   //Conditionally Rendered Compoenents ...
 
@@ -68,7 +72,7 @@ function DisplayVectorsTab({
     );
     operations = (
       <div className="displayvectorstab__data__operations">
-        <Operation vectorData = {vectorData}/>
+        <Operation vectorData = {vectorData} vectorsData={vectorsData} addOperation = {addOperation} />
       </div>
     );
   }
@@ -110,16 +114,19 @@ function DisplayVectors({
   handleActiveVector,
   hanldeXCompChange,
   handleYCompChange,
+  addOperation,
 }) {
   return (
     <div className="displayvectors">
       {vectorsData.map((vectorData) => {
         return (          <DisplayVectorsTab
             vectorData={vectorData}
+            vectorsData = {vectorsData}
             activeVectorId={activeVectorId}
             handleActiveVector={handleActiveVector}
             hanldeXCompChange={hanldeXCompChange}
             handleYCompChange={handleYCompChange}
+            addOperation = {addOperation}
           />
         );
       })}
@@ -146,10 +153,15 @@ export default function VectorLab() {
     setVectorsData(copyVectorsData);
   }
 
-  function addOperation(e,vec1, vec2){
+  function addOperation(e,v1_id, v2_id,operationName){
+    
     e.preventDefault();
-
+    let copyVectorsData = vectorsData.slice();
   
+   
+    let v1 = getVectorData(v1_id, copyVectorsData);
+    v1["operations"].push({operand: v2_id, operationName, });
+    setVectorsData(copyVectorsData);
   }
 
   function handleActiveVector(id) {
@@ -187,6 +199,7 @@ export default function VectorLab() {
           handleActiveVector={handleActiveVector}
           hanldeXCompChange={hanldeXCompChange}
           handleYCompChange={handleYCompChange}
+          addOperation = {addOperation}
         />
         <div className="vectorlab__input">
           <Fab

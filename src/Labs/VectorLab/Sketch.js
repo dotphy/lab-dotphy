@@ -5,7 +5,7 @@ export default function Sketch(p) {
   let activeVector;
   let operationedVectorsData = [];
   let operationedVectors = [];
-  let displaySize = {
+  const DISPLAY_SIZE = {
     width:
       window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
     height: window.innerHeight / 2,
@@ -21,7 +21,7 @@ export default function Sketch(p) {
 
   //SETUP ....
   p.setup = () => {
-    p.createCanvas(displaySize.width, displaySize.height);
+    p.createCanvas(DISPLAY_SIZE.width, DISPLAY_SIZE.height);
   };
 
   //Draw.....
@@ -31,6 +31,7 @@ export default function Sketch(p) {
     drawAxes();
     drawVectors();
     drawActiveVectors();
+    drawOperationedVectors();
   };
 
   // ------------------HELPER DRAWS------------------
@@ -52,7 +53,7 @@ export default function Sketch(p) {
       p.text(this.label, this.vec.x / 2 + 10, -this.vec.y / 2 + 10);
       p.pop();
 
-      drawArrow(p.createVector(0, 0), this.vec, this.c);
+      this.drawArrow(p.createVector(0, 0), this.vec, this.c);
       p.stroke(this.c);
       p.line(0, 0, this.vec.x, this.vec.y);
       p.pop();
@@ -63,28 +64,28 @@ export default function Sketch(p) {
       res = new MyVec(res.x, res.y, "red", `${this.label} + ${vec2.label}`);
       res.draw();
     }
+    drawArrow(base, vec, myColor) {
+      p.push();
+      p.stroke(myColor);
+      p.strokeWeight(3);
+      p.fill(myColor);
+      p.translate(base.x, base.y);
+      p.line(0, 0, vec.x, vec.y);
+      p.rotate(vec.heading());
+      let arrowSize = 7;
+      p.translate(vec.mag() - arrowSize, 0);
+      p.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+      p.pop();
+    }
   }
 
-  function drawArrow(base, vec, myColor) {
-    p.push();
-    p.stroke(myColor);
-    p.strokeWeight(3);
-    p.fill(myColor);
-    p.translate(base.x, base.y);
-    p.line(0, 0, vec.x, vec.y);
-    p.rotate(vec.heading());
-    let arrowSize = 7;
-    p.translate(vec.mag() - arrowSize, 0);
-    p.triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-    p.pop();
-  }
 
   function drawAxes() {
     p.push();
     p.strokeWeight(3);
-    p.stroke("white");
-    p.line(20, 0, 20, displaySize.height);
-    p.line(0, 20, displaySize.width, 20);
+    p.stroke("gray");
+    p.line(20, 0, 20, DISPLAY_SIZE.height);
+    p.line(0, 20, DISPLAY_SIZE.width, 20);
     p.pop();
   }
 
@@ -111,7 +112,6 @@ export default function Sketch(p) {
     );
     p.push();
     p.translate(10, 10);
-
     p.stroke("white");
     p.fill("white");
     p.push();
@@ -125,4 +125,26 @@ export default function Sketch(p) {
     p.pop();
     activeVector.draw();
   }
+  
+  function drawOperationedVectors(){
+
+    for(let vector of vectorsData){
+      if(vector.operations.length != 0 ){
+         let vec1 = new MyVec(vector.x,vector.y , "white", vector.name);
+         let vec2 = getVectorData(vector.operations[0].operand, vectorsData);
+         vec2 = new MyVec(vec2.x, vec2.y, "white", vec2.name);
+
+         vec1.add(vec2);
+        
+ 
+        
+      }
+    }
+
+  }
+}
+
+
+function getVectorData(id, allObjs){
+  return allObjs.find((obj) => {return obj.id == id})
 }

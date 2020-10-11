@@ -1,20 +1,36 @@
 import React, { useState } from "react";
 import "./Operation.css";
  
-import { TextField, MenuItem, Fab, IconButton,Button } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import { MenuItem,Select,Button } from "@material-ui/core";
+ 
 
 
 function OperationSet(props){
-  const [val , setVal] = useState(0)
+  const [selectedInp , setSelectedInp] = useState();
+
+  function handleChange(e){
+    setSelectedInp(e.target.value)
+  }
+  
   return <div className="operationset">
-  <div className="operationset__input"> </div>
-  <div className="operationset__label">
-  <div> {props.vectorData.name} </div>
-   
-   <Button  color="primary"  variant="contained" startIcon={<AddIcon/>} >{props.label} </Button> </div>
-</div>
+  
+ <div className="operationset__inp">
+  <div> {props.vectorData.name } </div>
+  <div> {"   +  "}   </div>
+  <Select
+    labelId="vectorInp"
+    className="vectorInp"
+    value={selectedInp}
+    onChange={handleChange}
+    color = "secondary"
+  >
+    {props.vectorsData.map((vector)=>{ return <MenuItem value={vector} className="menuitem"> {vector.name }</MenuItem>})}
+  </Select>
+  </div>
+ <Button  color="primary"  variant="contained"   onClick = {(e)=>{props.addOperation(e,props.vectorData.id, selectedInp.id,"add")}} >{props.label} </Button> </div>
+
 }
+
 export default function Operations(props) {
   let [isInputOn, setIsInputOn] = useState(false);
   let inputs = <div> </div>;
@@ -32,9 +48,8 @@ export default function Operations(props) {
         Operations 
        </div>
       <div className="operations__sets">
-         <OperationSet label = "Add" icon = "addIcon" vectorData = {props.vectorData}/>
-         
-      </div>
+         <OperationSet label = "Add" icon = "addIcon" vectorData = {props.vectorData} vectorsData = {props.vectorsData} addOperation = {props.addOperation} />
+       </div>
     </div> 
   );
 
