@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import "./Controls.css";
-import SvgPlay from "../../Assets/play.js";
-import SvgPause from "../../Assets/pause.js";
-import SvgGraph from "../../Assets/graph.js";
-import SvgRepeat from "../../Assets/repeat.js";
-import SvgConfigure from "../../Assets/configure.js";
-import SvgFullScreen from "../../Assets/fullScreen.js";
-import { PinDropSharp } from "@material-ui/icons";
+import {SvgConfigure, SvgFullScreen, SvgGraph , SvgPause,SvgPlay ,SvgRepeat, Svg3D} from "../../Assets/icons"
+ 
 
 //---------------Individual Control Components --------------
 
@@ -51,6 +46,7 @@ function Controls(props) {
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
       <SvgFullScreen onClick={props.handleFullScreenClick} className={"icon"} />
+      <Svg3D className={"icon"}/>
     </div>
   );
 }
