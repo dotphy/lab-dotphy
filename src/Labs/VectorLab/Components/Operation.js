@@ -16,7 +16,7 @@ function OperationSet(props){
   
  <div className="operationset__inp">
   <div> {props.vectorData.name } </div>
-  <div> {"   +  "}   </div>
+  <div> {"   +   "}   </div>
   <Select
     labelId="vectorInp"
     className="vectorInp"
@@ -27,7 +27,7 @@ function OperationSet(props){
     {props.vectorsData.map((vector)=>{ return <MenuItem value={vector} className="menuitem"> {vector.name }</MenuItem>})}
   </Select>
   </div>
- <Button  color="primary"  variant="contained"   onClick = {(e)=>{props.addOperation(e,props.vectorData.id, selectedInp.id,"add")}} >{props.label} </Button> </div>
+ <Button  color="primary" variant="contained" onClick = {(e)=>{props.addOperation(e,props.vectorData.id, selectedInp.id,"add")}} >{props.label} </Button> </div>
 
 }
 
@@ -45,7 +45,7 @@ export default function Operations(props) {
   return (
     <div className = "operations">
       <div className="label"> 
-        Operations 
+        Operations
        </div>
       <div className="operations__sets">
          <OperationSet label = "Add" icon = "addIcon" vectorData = {props.vectorData} vectorsData = {props.vectorsData} addOperation = {props.addOperation} />
