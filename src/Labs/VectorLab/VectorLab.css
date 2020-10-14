@@ -35,7 +35,6 @@
   width: 400px;
   overflow-y: scroll;
   background-color: #111213;
-
   border-radius: 5px;
   padding: 10px 5px;
 }
@@ -99,18 +98,26 @@
     font-size: 8px;
     padding: 10px 0px 0px 0px;
   }
+
+  .vectorlab__button {
+    padding: 0px;
+  }
+  .displayvectorstab:hover {
+    background-color: #111213;
+  }
   .displayvectors {
-    top: 384px;
-    left: 10px;
+    top: 404px;
+    left: 18px;
     position: absolute;
     height: 180px;
-    width: 93vw;
+    width: 88vw;
   }
   .displayvectorstab {
     padding: 0px;
     margin-top: 0px;
+    margin-left:5px;
     z-index: 12;
-    font-size: 5px;
+    font-size: 7px;
   }
   .displayvectorstab__data {
     font-size: 8px;
@@ -123,7 +130,8 @@
   }
   .vectorlab__input {
     position: absolute;
-    bottom: 80px;
+    bottom: 50px;
     right: 20px;
+    padding:0px !important;
   }
 }

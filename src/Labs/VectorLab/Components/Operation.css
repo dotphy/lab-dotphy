@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  padding-bottom: 10px;
 }
 .operations__label {
   display: flex;
@@ -10,7 +11,7 @@
 
 .operationset__inp {
   display: flex;
-  margin-right: 10%;
+  margin-right: 5%;
   align-items: center;
 }
 .operationset {
@@ -33,4 +34,21 @@
 .menuitem {
   color: white !important;
   background: #242526 !important;
+}
+@media only screen and (max-width: 700px) {
+  .vectorInp {
+    border-radius: 10px;
+    padding: 2px !important;
+    color: white !important;
+    font-size: 5px;
+    background-color: #242526 !important;
+  }
+  
+.vectorInp {
+  border-radius: 10px;
+  padding: 5px 10px !important;
+  color: white !important;
+  font-size: 10px !important;
+  background-color: #242526 !important;
+}
 }
