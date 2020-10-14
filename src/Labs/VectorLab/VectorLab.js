@@ -46,7 +46,7 @@ function DisplayVectorsTab({
 
   let xComp = <p className="numbers">{String(vectorData.x) + " units"}</p>;
   let yComp = <p className="numbers">{String(vectorData.y) + " units"}</p>;
-  let operations = <div> </div>;
+  let operations = <div></div>;
   if (vectorData.id == activeVectorId) {
     xComp = (
       <Slider
@@ -85,8 +85,7 @@ function DisplayVectorsTab({
       }}
     >
       <div className="displayvectorstab__name">
-        <p>{vectorData.name} </p>
-
+        <p>{vectorData.name}</p>
         <EditIcon />
       </div>
       <div className="displayvectorstab__data">
@@ -210,6 +209,7 @@ export default function VectorLab() {
               setIsMouseInAddIcon(true);
             }}
             onMouseLeave={() => setIsMouseInAddIcon(false)}
+            style={{ padding: "0px" }}
           >
             <AddIcon className="vactorlab_input_icon" />
             {isMouseInAddIcon && "Add a new Vector"}
