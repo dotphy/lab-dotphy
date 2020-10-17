@@ -5,12 +5,10 @@ import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
 import Operation from "./Components/Operation";
 import "./VectorLab.css";
-
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
-
-
+import btnslider from "../../Assets/btnslider.png";
 
 const DISPLAY_SIZE = {
   width:
@@ -18,19 +16,21 @@ const DISPLAY_SIZE = {
   height: window.innerHeight / 2,
 };
 
-function randomVector(name){
-  return({
+function randomVector(name) {
+  return {
     id: uuid(),
-    name: name ,
+    name: name,
     x: Math.floor(Math.random() * DISPLAY_SIZE.width),
     y: Math.floor(Math.random() * DISPLAY_SIZE.height),
     color: "white",
     operations: [],
-  })
+  };
 }
-function getVectorData(id, allObjs){
-  
-  return allObjs.find((obj) => {return obj.id == id})
+
+function getVectorData(id, allObjs) {
+  return allObjs.find((obj) => {
+    return obj.id == id;
+  });
 }
 
 function DisplayVectorsTab({
@@ -72,7 +72,11 @@ function DisplayVectorsTab({
     );
     operations = (
       <div className="displayvectorstab__data__operations">
-        <Operation vectorData = {vectorData} vectorsData={vectorsData} addOperation = {addOperation} />
+        <Operation
+          vectorData={vectorData}
+          vectorsData={vectorsData}
+          addOperation={addOperation}
+        />
       </div>
     );
   }
@@ -102,7 +106,6 @@ function DisplayVectorsTab({
         </div>
         <div>{operations}</div>
       </div>
-     
     </div>
   );
 }
@@ -118,14 +121,15 @@ function DisplayVectors({
   return (
     <div className="displayvectors">
       {vectorsData.map((vectorData) => {
-        return (          <DisplayVectorsTab
+        return (
+          <DisplayVectorsTab
             vectorData={vectorData}
-            vectorsData = {vectorsData}
+            vectorsData={vectorsData}
             activeVectorId={activeVectorId}
             handleActiveVector={handleActiveVector}
             hanldeXCompChange={hanldeXCompChange}
             handleYCompChange={handleYCompChange}
-            addOperation = {addOperation}
+            addOperation={addOperation}
           />
         );
       })}
@@ -133,33 +137,27 @@ function DisplayVectors({
   );
 }
 
-
 export default function VectorLab() {
   const [num, setNum] = useState(2);
-  const [vectorsData, setVectorsData] = useState([
-    randomVector("V1"),
-  ]);
+  const [vectorsData, setVectorsData] = useState([randomVector("V1")]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
-
-
+  const [IsActiveState, activeStateFalse]= useState("");
   function addNewVector(e) {
     //Add a new Vector Randomly
-    setNum(num+1)
+    setNum(num + 1);
     e.preventDefault();
     let copyVectorsData = vectorsData.slice();
-    copyVectorsData.push(randomVector("V"+String(num)));
+    copyVectorsData.push(randomVector("V" + String(num)));
     setVectorsData(copyVectorsData);
   }
 
-  function addOperation(e,v1_id, v2_id,operationName){
-    
+  function addOperation(e, v1_id, v2_id, operationName) {
     e.preventDefault();
     let copyVectorsData = vectorsData.slice();
-  
-   
+
     let v1 = getVectorData(v1_id, copyVectorsData);
-    v1["operations"].push({operand: v2_id, operationName, });
+    v1["operations"].push({ operand: v2_id, operationName });
     setVectorsData(copyVectorsData);
   }
 
@@ -168,12 +166,10 @@ export default function VectorLab() {
   }
 
   function hanldeXCompChange(e, newValue, id) {
-   
     let copyVectorsData = vectorsData.slice();
     copyVectorsData.find((vector) => {
       return vector.id == id;
     }).x = newValue;
-    
   }
 
   function handleYCompChange(e, newValue, id) {
@@ -181,7 +177,9 @@ export default function VectorLab() {
     copyVectorsData.find((vector) => {
       return vector.id == id;
     }).y = newValue;
-   
+  }
+  function HandleDisplayVactors(){
+     activeStateFalse("activeslider") ;
   }
 
   return (
@@ -192,14 +190,17 @@ export default function VectorLab() {
         activeVectorId={activeVectorId}
       />
       <div style={{ marginRight: "10px" }}>
+       <div className = {IsActiveState}>
         <DisplayVectors
           vectorsData={vectorsData}
           activeVectorId={activeVectorId}
           handleActiveVector={handleActiveVector}
           hanldeXCompChange={hanldeXCompChange}
           handleYCompChange={handleYCompChange}
-          addOperation = {addOperation}
+          addOperation={addOperation}
         />
+         <img src={btnslider}  className="btn-slider" onClick={HandleDisplayVactors} />
+        </div>
         <div className="vectorlab__input">
           <Fab
             onClick={addNewVector}
@@ -217,5 +218,6 @@ export default function VectorLab() {
         </div>
       </div>
     </div>
+    
   );
 }
