@@ -48,7 +48,8 @@ export default function Operations(props) {
         Operations
        </div>
       <div className="operations__sets">
-         <OperationSet label = "Add" icon = "addIcon" vectorData = {props.vectorData} vectorsData = {props.vectorsData} addOperation = {props.addOperation} />
+         <OperationSet label = "Add"  vectorData = {props.vectorData} vectorsData = {props.vectorsData} addOperation = {props.addOperation} />
+         <
        </div>
     </div> 
   );

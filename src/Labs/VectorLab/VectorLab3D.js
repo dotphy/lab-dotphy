@@ -212,8 +212,8 @@ export default function VectorLab() {
             style={{ padding: "0px" }}
           >
             <AddIcon className="vactorlab_input_icon" />
-            {isMouseInAddIcon && "new Vector"}
-          </Fab>  
+            {isMouseInAddIcon && "Ad ctor"}
+          </Fab>
         </div>
       </div>
     </div>
