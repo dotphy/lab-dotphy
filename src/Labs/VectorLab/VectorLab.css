@@ -89,6 +89,9 @@
   align-items: center;
   color: rgba(253, 253, 253, 0.658);
 }
+.btn-slider {
+  display: none;
+}
 
 .numbers {
   font-family: LCD;
@@ -106,16 +109,24 @@
     background-color: #111213;
   }
   .displayvectors {
+    padding: 0px;
+    height: 0px;
+    width: 0vw;
+  }
+  .activeslider .displayvectors {
+    overflow-x: hidden;
+    padding: 5px;
     top: 404px;
-    left: 18px;
+    left: 5px;
     position: absolute;
-    height: 180px;
-    width: 88vw;
+    height: 230px;
+    width: 97vw;
+    transition: 2s linear;
   }
   .displayvectorstab {
     padding: 0px;
     margin-top: 0px;
-    margin-left:5px;
+    margin-left: 5px;
     z-index: 12;
     font-size: 7px;
   }
@@ -130,8 +141,16 @@
   }
   .vectorlab__input {
     position: absolute;
-    bottom: 50px;
-    right: 20px;
-    padding:0px !important;
+    bottom: 530px;
+    right: 3px;
+    padding: 0px !important;
+  }
+  .btn-slider {
+    display: block;
+    height: 50px;
+    position: absolute;
+    top: 515px;
+    left: 348px;
+    border-radius: 30px;
   }
 }
