@@ -22,6 +22,7 @@ export default function Sketch(p) {
   //SETUP ....
   p.setup = () => {
     p.createCanvas(DISPLAY_SIZE.width, DISPLAY_SIZE.height);
+   
   };
 
   //Draw.....
@@ -31,7 +32,8 @@ export default function Sketch(p) {
     drawAxes();
     drawVectors();
     drawActiveVectors();
-    drawOperationedVectors();
+    drawOperationed_add();
+    drawOperationed_scale();
   };
 
   // ------------------HELPER DRAWS------------------
@@ -139,23 +141,47 @@ export default function Sketch(p) {
     activeVector.draw();
   }
   
-  function drawOperationedVectors(){
+  function  drawOperationed_add(){
 
     for(let vector of vectorsData){
       if(vector.operations.length != 0 ){
+       for(let operation of vector.operations){
+         if(operation.operationName == "add"){
          let vec1 = new MyVec(vector.x,vector.y , "white", vector.name);
-         let vec2 = getVectorData(vector.operations[0].operand, vectorsData);
+         let vec2 = getVectorData( operation.operationData.operand, vectorsData);
          vec2 = new MyVec(vec2.x, vec2.y, "white", vec2.name);
-
          vec1.add(vec2);
+        }
         
- 
         
       }
     }
 
   }
 }
+function   drawOperationed_scale(){
+ 
+  for(let vector of vectorsData){
+    if(vector.operations.length != 0 ){
+     for(let operation of vector.operations){
+       if(operation.operationName == "scale"){
+        
+      
+          vector.x = Math.floor(vector.x * operation.operationData.operationValue);
+          vector.y = Math.floor( vector.y * operation.operationData.operationValue);
+          operation.operationData.operationValue = 1 ;
+          
+      }
+      
+      
+    }
+  }
+
+}
+}
+}
+
+
 
 
 function getVectorData(id, allObjs){

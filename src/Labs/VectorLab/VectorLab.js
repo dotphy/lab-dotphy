@@ -152,12 +152,11 @@ export default function VectorLab() {
     setVectorsData(copyVectorsData);
   }
 
-  function addOperation(e, v1_id, v2_id, operationName) {
+  function addOperation(e, v1_id, v2_id, operationName, operationValue) {
     e.preventDefault();
     let copyVectorsData = vectorsData.slice();
-
     let v1 = getVectorData(v1_id, copyVectorsData);
-    v1["operations"].push({ operand: v2_id, operationName });
+    v1["operations"].push({ operationName, operationData :{operand : v2_id , operationValue : operationValue }});
     setVectorsData(copyVectorsData);
   }
 
