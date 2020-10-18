@@ -92,6 +92,9 @@
 .btn-slider {
   display: none;
 }
+.btn-slide {
+  display: none;
+}
 
 .numbers {
   font-family: LCD;
@@ -116,12 +119,37 @@
   .activeslider .displayvectors {
     overflow-x: hidden;
     padding: 5px;
-    top: 404px;
+    top: 410px;
     left: 5px;
     position: absolute;
-    height: 230px;
+    height: 225px;
     width: 97vw;
     transition: 2s linear;
+  }
+  .activeslide .displayvectors {
+    padding: 0px;
+    height: 0px;
+    width: 0vw;
+    transition: 2s linear;
+  }
+
+  .activeslider .btn-slider {
+    display: none;
+  }
+  .activeslider .activeslide .btn-slider {
+    display: block;
+  }
+  .activeslider .btn-slide {
+    border-radius: 50% 0px 0px 50%;
+    display: block;
+    height: 50px;
+    width: 16px;
+    position: absolute;
+    top: 480px;
+    left: 1px;
+  }
+  .activeslider .activeslide .btn-slide {
+    display: none;
   }
   .displayvectorstab {
     padding: 0px;
@@ -141,16 +169,18 @@
   }
   .vectorlab__input {
     position: absolute;
-    bottom: 530px;
-    right: 3px;
-    padding: 0px !important;
+    bottom: 520px;
+    right: 5px;
+    padding: 5px !important;
   }
+
   .btn-slider {
     display: block;
     height: 50px;
+    width: 16px;
     position: absolute;
-    top: 515px;
-    left: 348px;
-    border-radius: 30px;
+    top: 480px;
+    left: 1px;
+    border-radius: 0px 50% 50% 0px;
   }
 }

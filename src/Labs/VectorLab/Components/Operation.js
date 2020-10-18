@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Operation.css";
  
-import { MenuItem,Select,Button } from "@material-ui/core";
+import { MenuItem,Select,Button, TextField} from "@material-ui/core";
  
 
 
-function OperationSet(props){
+function OperationAdd(props){
   const [selectedInp , setSelectedInp] = useState();
 
   function handleChange(e){
@@ -27,7 +27,43 @@ function OperationSet(props){
     {props.vectorsData.map((vector)=>{ return <MenuItem value={vector} className="menuitem"> {vector.name }</MenuItem>})}
   </Select>
   </div>
- <Button  color="primary" variant="contained" onClick = {(e)=>{props.addOperation(e,props.vectorData.id, selectedInp.id,"add")}} >{props.label} </Button> </div>
+ <Button  color="primary" variant="contained" onClick = {(e)=>{props.addOperation(e,props.vectorData.id, selectedInp.id,"add", null)}} >Add</Button> </div>
+
+}
+
+function OperationScale(props){
+  const [selectedInp , setSelectedInp] = useState(1);
+
+  function handleChange(e){
+    setSelectedInp(e.target.value)
+  }
+  
+  return <div className="operationset">
+  
+ <div className="operationset__inp">
+  <div> {props.vectorData.name } </div>
+  <div> {"   x  "}   </div>
+  <TextField
+          id="filled-number"
+          label="Number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          style={
+            {
+              width:"70px",
+            }
+          }
+          color="primary"
+          variant="filled"
+          value = {selectedInp}
+          onChange={handleChange}
+
+        />
+  
+  </div>
+ <Button  color="primary" variant="contained" onClick = {(e)=>{props.addOperation(e,props.vectorData.id, null ,"scale" , selectedInp)}} > Scale</Button> </div>
 
 }
 
@@ -48,7 +84,8 @@ export default function Operations(props) {
         Operations
        </div>
       <div className="operations__sets">
-         <OperationSet label = "Add" icon = "addIcon" vectorData = {props.vectorData} vectorsData = {props.vectorsData} addOperation = {props.addOperation} />
+         <OperationAdd  vectorData = {props.vectorData} vectorsData = {props.vectorsData} addOperation = {props.addOperation} />
+         <OperationScale vectorData = {props.vectorData} addOperation = {props.addOperation} />
        </div>
     </div> 
   );
