@@ -32,6 +32,9 @@ function getVectorData(id, allObjs) {
     return obj.id == id;
   });
 }
+function isDesktop(){
+  return DISPLAY_SIZE.width > 700;
+}
 
 function DisplayVectorsTab({
   vectorData,
@@ -219,7 +222,7 @@ export default function VectorLab() {
             style={{ padding: "0px" }}
           >
             <AddIcon className="vactorlab_input_icon" />
-            {isMouseInAddIcon && "new Vector"}
+            {isMouseInAddIcon && (isDesktop()? "New Vector": "")}
           </Fab>  
         </div>
       </div>

@@ -35,6 +35,9 @@
   color: white !important;
   background: #242526 !important;
 }
+.MuiInputBase-root {
+  color: white !important;
+}
 @media only screen and (max-width: 700px) {
   .vectorInp {
     border-radius: 10px;
@@ -43,12 +46,12 @@
     font-size: 5px;
     background-color: #242526 !important;
   }
-  
-.vectorInp {
-  border-radius: 10px;
-  padding: 5px 10px !important;
-  color: white !important;
-  font-size: 10px !important;
-  background-color: #242526 !important;
-}
+
+  .vectorInp {
+    border-radius: 10px;
+    padding: 5px 10px !important;
+    color: white !important;
+    font-size: 10px !important;
+    background-color: #242526 !important;
+  }
 }
