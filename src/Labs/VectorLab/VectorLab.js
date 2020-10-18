@@ -143,6 +143,7 @@ export default function VectorLab() {
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
   const [IsActiveState, activeStateFalse]= useState("");
+  const [isActiveState, ActiveStateFalse]= useState("");
   function addNewVector(e) {
     //Add a new Vector Randomly
     setNum(num + 1);
@@ -180,6 +181,9 @@ export default function VectorLab() {
   function HandleDisplayVactors(){
      activeStateFalse("activeslider") ;
   }
+  function HandleDisplayVactor(){
+    ActiveStateFalse("activeslide") ;
+ }
 
   return (
     <div className="vectorlab">
@@ -189,7 +193,8 @@ export default function VectorLab() {
         activeVectorId={activeVectorId}
       />
       <div style={{ marginRight: "10px" }}>
-       <div className = {IsActiveState}>
+       <div className = {IsActiveState}  >
+       <div className={isActiveState}>
         <DisplayVectors
           vectorsData={vectorsData}
           activeVectorId={activeVectorId}
@@ -198,7 +203,9 @@ export default function VectorLab() {
           handleYCompChange={handleYCompChange}
           addOperation={addOperation}
         />
-         <img src={btnslider}  className="btn-slider" onClick={HandleDisplayVactors} />
+         <img src={btnslider}  className="btn-slider" onClick={HandleDisplayVactors }  />
+         <img src={btnslider}  className="btn-slide" onClick={HandleDisplayVactor}/>
+         </div>
         </div>
         <div className="vectorlab__input">
           <Fab

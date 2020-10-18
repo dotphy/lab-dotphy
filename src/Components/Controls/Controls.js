@@ -38,11 +38,14 @@ function Controls(props) {
   function handleGraphClick() {
     setGraphStatus(graphStatus == "on" ? "off" : "on");
   }
-
+  function IsReload(){
+  document.querySelector(".reload").addEventListener('click', () => {
+    window.location.reload(true);
+  })}
   return (
     <div className="controls">
       <Play status={playStatus} onClick={handlePlayClick} />
-      <Repeat />
+      <Repeat className={"reload", <IsReload/>} />
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
       <SvgFullScreen onClick={props.handleFullScreenClick} className={"icon"} />
@@ -50,5 +53,6 @@ function Controls(props) {
     </div>
   );
 }
+
 
 export default Controls;
