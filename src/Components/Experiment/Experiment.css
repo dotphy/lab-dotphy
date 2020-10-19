@@ -11,8 +11,8 @@
 @media only screen and (max-width: 650px) {
   .experiment {
     border-radius: 0px;
-
-    width: 98vw;
+    height: 70vh;
+    width: 99vw;
     margin: 5px 0px 0px 10px;
   }
 }
