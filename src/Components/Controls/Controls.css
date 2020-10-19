@@ -28,16 +28,19 @@
   .controls {
     display: flex;
     height: 0px;
-    margin: 5px 0px 0px 8px;
+    margin: 0px;
     flex-direction: row;
     justify-content: space-between;
-
     width: 100vw;
   }
 
   .icon {
-    padding: 10px;
-    margin: 0px 0px 5px 0px;
+    height: 70px;
+    padding: 13px;
+    margin: 5px 0px 0px 5px;
     fill: #666;
+  }
+  .icon:hover {
+    box-shadow: 0px 0px 0px 0px;
   }
 }

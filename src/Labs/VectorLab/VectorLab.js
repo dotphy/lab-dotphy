@@ -4,11 +4,12 @@ import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
 import Operation from "./Components/Operation";
+import Controls from "../../Components/Controls/Controls"
 import "./VectorLab.css";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
-import btnslider from "../../Assets/btnslider.png";
+import {SvgSlider} from "../../Assets/icons"
 
 const DISPLAY_SIZE = {
   width:
@@ -120,9 +121,10 @@ function DisplayVectors({
   hanldeXCompChange,
   handleYCompChange,
   addOperation,
+  className
 }) {
   return (
-    <div className="displayvectors">
+    <div className={`displayvectors ${className}` } >
       {vectorsData.map((vectorData) => {
         return (
           <DisplayVectorsTab
@@ -145,8 +147,8 @@ export default function VectorLab() {
   const [vectorsData, setVectorsData] = useState([randomVector("V1")]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
-  const [IsActiveState, activeStateFalse]= useState("");
-  const [isActiveState, ActiveStateFalse]= useState("");
+  const [isSliderActive, setSliderStatus] = useState(false);
+
   function addNewVector(e) {
     //Add a new Vector Randomly
     setNum(num + 1);
@@ -181,23 +183,22 @@ export default function VectorLab() {
       return vector.id == id;
     }).y = newValue;
   }
-  function HandleDisplayVactors(){
-     activeStateFalse("activeslider") ;
+  function handleSliderClick(){
+    setSliderStatus(!isSliderActive);
   }
-  function HandleDisplayVactor(){
-    ActiveStateFalse("activeslide") ;
- }
 
   return (
+    <React.Fragment>
+    <Controls />
     <div className="vectorlab">
+   
       <P5Wrapper
         sketch={Sketch}
         vectorsData={vectorsData}
         activeVectorId={activeVectorId}
       />
       <div style={{ marginRight: "10px" }}>
-       <div className = {IsActiveState}  >
-       <div className={isActiveState}>
+       
         <DisplayVectors
           vectorsData={vectorsData}
           activeVectorId={activeVectorId}
@@ -205,11 +206,11 @@ export default function VectorLab() {
           hanldeXCompChange={hanldeXCompChange}
           handleYCompChange={handleYCompChange}
           addOperation={addOperation}
+          className = {isSliderActive ? "displayvector-open" : "displayvector-close"}
         />
-         <img src={btnslider}  className="btn-slider" onClick={HandleDisplayVactors }  />
-         <img src={btnslider}  className="btn-slide" onClick={HandleDisplayVactor}/>
-         </div>
-        </div>
+         <SvgSlider  className="svg-slider" onClick={handleSliderClick}/>
+     
+          
         <div className="vectorlab__input">
           <Fab
             onClick={addNewVector}
@@ -219,7 +220,7 @@ export default function VectorLab() {
               setIsMouseInAddIcon(true);
             }}
             onMouseLeave={() => setIsMouseInAddIcon(false)}
-            style={{ padding: "0px" }}
+            style={{ padding: "10px" }}
           >
             <AddIcon className="vactorlab_input_icon" />
             {isMouseInAddIcon && (isDesktop()? "New Vector": "")}
@@ -227,6 +228,7 @@ export default function VectorLab() {
         </div>
       </div>
     </div>
+    </React.Fragment>
     
   );
 }

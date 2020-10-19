@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Controls.css";
 import {SvgConfigure, SvgFullScreen, SvgGraph , SvgPause,SvgPlay ,SvgRepeat, Svg3D} from "../../Assets/icons"
  
@@ -28,6 +28,9 @@ function Controls(props) {
   const [playStatus, setPlayStatus] = useState("pause ");
   const [configureStatus, setConfigureStatus] = useState("on");
   const [graphStatus, setGraphStatus] = useState("off");
+  const [isFullScreenOn , setFullScreenStatus] = useState(false);
+
+   
 
   function handlePlayClick() {
     setPlayStatus(playStatus == "play" ? "pause" : "play");
@@ -42,13 +45,16 @@ function Controls(props) {
   document.querySelector(".reload").addEventListener('click', () => {
     window.location.reload(true);
   })}
+  function handleFullScreenClick() {
+    setFullScreenStatus(!isFullScreenOn);
+  }
   return (
     <div className="controls">
       <Play status={playStatus} onClick={handlePlayClick} />
       <Repeat className={"reload", <IsReload/>} />
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
-      <SvgFullScreen onClick={props.handleFullScreenClick} className={"icon"} />
+      <SvgFullScreen onClick={handleFullScreenClick} className={"icon"} />
       <Svg3D className={"icon"}/>
     </div>
   );
