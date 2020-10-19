@@ -208,7 +208,7 @@ export default function VectorLab() {
           addOperation={addOperation}
           className = {isSliderActive ? "displayvector-open" : "displayvector-close"}
         />
-         <SvgSlider  className="svg-slider" onClick={handleSliderClick}/>
+         <SvgSlider  className={`svg-slider ${isSliderActive ? "svg-slider-on" : "svg-slider-off" }`} onClick={handleSliderClick}/>
      
           
         <div className="vectorlab__input">

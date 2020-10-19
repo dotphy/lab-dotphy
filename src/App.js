@@ -16,8 +16,8 @@ function App(){
        <Header />
        <div className="main">
        <Suspense fallback = {<Loader/>}>
-       <Route path = "/" component = {VectorLab}/> 
-        <Route path = "learn" component = {Learn} /> 
+         <Route exact path = "/" component = {VectorLab}/> 
+         <Route path = "/learn" component = {Learn} /> 
        </Suspense>
        </div>
        </div>
