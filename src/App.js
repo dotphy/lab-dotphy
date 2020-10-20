@@ -1,43 +1,28 @@
-import React from "react";
+import React, {Suspense} from "react";
 import "./App.css";
 import Header from "./Components/Header/Header";
-import Controls from "./Components/Controls/Controls";
-import Experiment from "./Components/Experiment/Experiment";
+import Loader from "./Components/Loader/Loader"
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFullScreenOn: false,
-    };
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 
-    //Binding the methods to this"
-    this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
-  }
-  componentDidUpdate() {
-    if (this.state.isFullScreenOn) {
-      document.querySelector(".main").requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  }
-  handleFullScreenClick() {
-    this.setState((state) => {
-      return { isFullScreenOn: state.isFullScreenOn ? false : true };
-    });
-  }
+const Learn  = React.lazy(()=>import("./Learn/Learn"));
+const VectorLab = React.lazy(()=>import("./Labs/VectorLab/VectorLab"));
 
-  render() {
+function App(){
+   
     return (
-      <div className="app">
-        <Header />
-        <div className="main">
-          <Controls handleFullScreenClick={this.handleFullScreenClick} />
-          <Experiment />
-        </div>
-      </div>
+       <Router>
+       <div className="app">
+       <Header />
+       <div className="main">
+       <Suspense fallback = {<Loader/>}>
+         <Route exact path = "/" component = {VectorLab}/> 
+         <Route path = "/learn" component = {Learn} /> 
+       </Suspense>
+       </div>
+       </div>
+       </Router>
     );
-  }
 }
 
 export default App;

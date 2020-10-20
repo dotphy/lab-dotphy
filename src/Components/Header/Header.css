@@ -12,6 +12,7 @@
 .header__icon {
   margin-left: 40px;
   width: 50px;
+  border: white 2px solid;
   border-radius: 100px;
 }
 
@@ -31,10 +32,6 @@
 }
 .header__option-active .MuiSvgIcon-root {
   color: white;
-}
-.header__option:hover {
-  background-color: #3a3b3c;
-  transition: 0.2s;
 }
 
 .header__option .MuiSvgIcon-root {

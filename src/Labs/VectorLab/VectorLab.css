@@ -28,6 +28,13 @@
   justify-content: space-between;
   color: white;
   padding: 20px;
+  background-color: #252526;
+  width: 70vw;
+  height: 80vh;
+  border-radius: 10px;
+  margin: 30px 30px 50px 30px;
+  overflow: hidden;
+  flex: 1;
 }
 
 .displayvectors {
@@ -89,10 +96,7 @@
   align-items: center;
   color: rgba(253, 253, 253, 0.658);
 }
-.btn-slider {
-  display: none;
-}
-.btn-slide {
+.svg-slider {
   display: none;
 }
 
@@ -102,7 +106,11 @@
 @media only screen and (max-width: 700px) {
   .vectorlab {
     font-size: 8px;
-    padding: 10px 0px 0px 0px;
+    padding: 10px 0px 0px 8px;
+    border-radius: 0px;
+
+    width: 100vw;
+    margin: 5px 0px 0px 10px;
   }
 
   .vectorlab__button {
@@ -113,44 +121,30 @@
   }
   .displayvectors {
     padding: 0px;
-    height: 0px;
+    height: 225px;
     width: 0vw;
   }
-  .activeslider .displayvectors {
+  .displayvector-open {
     overflow-x: hidden;
     padding: 5px;
     top: 65vh;
-    left: 2px;
+    left: 1px;
     position: absolute;
-    height: 225px;
+    height: 35vh;
     width: 99vw;
-    transition: 2s linear;
+    transition: 1s linear;
   }
-  .activeslide .displayvectors {
+  .displayvector-close {
+    overflow-x: hidden;
     padding: 0px;
-    height: 0px;
+    top: 65vh;
+    left: 1px;
+    position: absolute;
+    height: 35vh;
     width: 0vw;
-    transition: 2s linear;
+    transition: 1s linear;
   }
 
-  .activeslider .btn-slider {
-    display: none;
-  }
-  .activeslider .activeslide .btn-slider {
-    display: block;
-  }
-  .activeslider .btn-slide {
-    border-radius: 50% 0px 0px 50%;
-    display: block;
-    height: 50px;
-    width: 16px;
-    position: absolute;
-    top: 480px;
-    left: 1px;
-  }
-  .activeslider .activeslide .btn-slide {
-    display: none;
-  }
   .displayvectorstab {
     padding: 0px;
     margin-top: 0px;
@@ -169,18 +163,24 @@
   }
   .vectorlab__input {
     position: absolute;
-    bottom: 82vh;
-    right: 2px;
+    top: 9vh;
+    right: 1px;
     padding: 5px !important;
   }
 
-  .btn-slider {
+  .svg-slider {
+    transform: rotate(0deg);
+    fill: white;
     display: block;
-    height: 50px;
-    width: 16px;
+    height: 30px;
+    width: 25px;
     position: absolute;
-    top: 480px;
+    top: 80vh;
     left: 1px;
-    border-radius: 0px 50% 50% 0px;
+    transition: 1s;
+  }
+  .svg-slider-on {
+    transform: rotate(180deg);
+    transition: 1s;
   }
 }

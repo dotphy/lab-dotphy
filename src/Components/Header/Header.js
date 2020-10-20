@@ -6,6 +6,7 @@ import Home from "@material-ui/icons/Home";
 import Book from "@material-ui/icons/Book";
 import Forum from "@material-ui/icons/Forum";
 import IconButton from "@material-ui/core/IconButton";
+import {Link} from "react-router-dom"
 
 function Header() {
   return (
@@ -14,13 +15,16 @@ function Header() {
         <img src={dotphy} className="header__icon" />
       </div>
       <div className="header__middle">
+      <Link to = "/">
         <div className="header__option header__option-active">
-          <Home />
+         <Home />
         </div>
-
+        </Link>
+        <Link to="/learn">
         <div className="header__option">
-          <Book />
+        <Book />
         </div>
+        </Link>
         <div className="header__option">
           <Forum />
         </div>
