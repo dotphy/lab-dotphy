@@ -1,0 +1,18 @@
+.experiment {
+  background-color: #252526;
+  width: 70vw;
+  height: 80vh;
+  border-radius: 10px;
+  margin: 30px 30px 50px 30px;
+  overflow: hidden;
+  flex: 1;
+}
+
+@media only screen and (max-width: 650px) {
+  .experiment {
+    border-radius: 0px;
+    height: 70vh;
+    width: 99vw;
+    margin: 5px 0px 0px 10px;
+  }
+}
