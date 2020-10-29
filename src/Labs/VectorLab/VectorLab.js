@@ -4,12 +4,12 @@ import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
 import Operation from "./Components/Operation";
-import Controls from "../../Components/Controls/Controls"
+import Controls from "../../Components/Controls/Controls";
 import "./VectorLab.css";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
-import {SvgSlider} from "../../Assets/icons"
+import { SvgSlider } from "../../Assets/icons";
 
 const DISPLAY_SIZE = {
   width:
@@ -33,7 +33,7 @@ function getVectorData(id, allObjs) {
     return obj.id == id;
   });
 }
-function isDesktop(){
+function isDesktop() {
   return DISPLAY_SIZE.width > 700;
 }
 
@@ -121,10 +121,10 @@ function DisplayVectors({
   hanldeXCompChange,
   handleYCompChange,
   addOperation,
-  className
+  className,
 }) {
   return (
-    <div className={`displayvectors ${className}` } >
+    <div className={`displayvectors ${className}`}>
       {vectorsData.map((vectorData) => {
         return (
           <DisplayVectorsTab
@@ -162,7 +162,10 @@ export default function VectorLab() {
     e.preventDefault();
     let copyVectorsData = vectorsData.slice();
     let v1 = getVectorData(v1_id, copyVectorsData);
-    v1["operations"].push({ operationName, operationData :{operand : v2_id , operationValue : operationValue }});
+    v1["operations"].push({
+      operationName,
+      operationData: { operand: v2_id, operationValue: operationValue },
+    });
     setVectorsData(copyVectorsData);
   }
 
@@ -183,52 +186,55 @@ export default function VectorLab() {
       return vector.id == id;
     }).y = newValue;
   }
-  function handleSliderClick(){
+  function handleSliderClick() {
     setSliderStatus(!isSliderActive);
   }
 
   return (
     <React.Fragment>
-    <Controls />
-    <div className="vectorlab">
-   
-      <P5Wrapper
-        sketch={Sketch}
-        vectorsData={vectorsData}
-        activeVectorId={activeVectorId}
-      />
-      <div style={{ marginRight: "10px" }}>
-       
-        <DisplayVectors
+      <Controls />
+      <div className="vectorlab">
+        <P5Wrapper
+          sketch={Sketch}
           vectorsData={vectorsData}
           activeVectorId={activeVectorId}
-          handleActiveVector={handleActiveVector}
-          hanldeXCompChange={hanldeXCompChange}
-          handleYCompChange={handleYCompChange}
-          addOperation={addOperation}
-          className = {isSliderActive ? "displayvector-open" : "displayvector-close"}
         />
-         <SvgSlider  className={`svg-slider ${isSliderActive ? "svg-slider-on" : "svg-slider-off" }`} onClick={handleSliderClick}/>
-     
-          
-        <div className="vectorlab__input">
-          <Fab
-            onClick={addNewVector}
-            variant="extended"
-            color="secondary"
-            onMouseEnter={() => {
-              setIsMouseInAddIcon(true);
-            }}
-            onMouseLeave={() => setIsMouseInAddIcon(false)}
-            style={{ padding: "10px" }}
-          >
-            <AddIcon className="vactorlab_input_icon" />
-            {isMouseInAddIcon && (isDesktop()? "New Vector": "")}
-          </Fab>  
+        <div style={{ marginRight: "10px" }}>
+          <DisplayVectors
+            vectorsData={vectorsData}
+            activeVectorId={activeVectorId}
+            handleActiveVector={handleActiveVector}
+            hanldeXCompChange={hanldeXCompChange}
+            handleYCompChange={handleYCompChange}
+            addOperation={addOperation}
+            className={
+              isSliderActive ? "displayvector-open" : "displayvector-close"
+            }
+          />
+          <SvgSlider
+            className={`svg-slider ${
+              isSliderActive ? "svg-slider-on" : "svg-slider-off"
+            }`}
+            onClick={handleSliderClick}
+          />
+
+          <div className="vectorlab__input">
+            <Fab
+              onClick={addNewVector}
+              variant="extended"
+              color="secondary"
+              onMouseEnter={() => {
+                setIsMouseInAddIcon(true);
+              }}
+              onMouseLeave={() => setIsMouseInAddIcon(false)}
+              style={{ padding: "10px" }}
+            >
+              <AddIcon className="vactorlab_input_icon" />
+              {isMouseInAddIcon && (isDesktop() ? "New Vector" : "")}
+            </Fab>
+          </div>
         </div>
       </div>
-    </div>
     </React.Fragment>
-    
   );
 }

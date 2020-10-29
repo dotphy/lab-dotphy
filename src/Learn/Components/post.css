@@ -1,0 +1,23 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  background-color: #242526;
+  min-width: 500px;
+}
+
+.post__header {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.post__header p {
+  margin-left: 10px;
+  color: white;
+  font-size: 1.2em;
+}
+
+.post__content {
+  margin-top: 10px;
+  color: rgb(224, 211, 211);
+}

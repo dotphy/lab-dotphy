@@ -5,8 +5,8 @@ import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import Home from "@material-ui/icons/Home";
 import Book from "@material-ui/icons/Book";
 import Forum from "@material-ui/icons/Forum";
-import IconButton from "@material-ui/core/IconButton";
-import {Link} from "react-router-dom"
+import { SvgLearn } from "../../Assets/icons";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -15,15 +15,15 @@ function Header() {
         <img src={dotphy} className="header__icon" />
       </div>
       <div className="header__middle">
-      <Link to = "/">
-        <div className="header__option header__option-active">
-         <Home />
-        </div>
+        <Link to="/">
+          <div className="header__option header__option-active">
+            <Home />
+          </div>
         </Link>
         <Link to="/learn">
-        <div className="header__option">
-        <Book />
-        </div>
+          <div className="header__option">
+            <Book />
+          </div>
         </Link>
         <div className="header__option">
           <Forum />
@@ -32,7 +32,7 @@ function Header() {
       <div className="header__right">
         <div className="header__input">
           <SearchOutlined />
-          <input type="text" placeholder="Find A Experiment" />{" "}
+          <input type="text" placeholder="Find A Experiment" />
         </div>
       </div>
     </div>

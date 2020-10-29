@@ -8,10 +8,17 @@
   width: 100vw;
   background-color: #252526;
 }
-
+.header__option-icon {
+  fill: gray;
+  width: 30px;
+  height: 30px;
+}
+.header__option-icon:hover {
+  fill: white;
+}
 .header__icon {
   margin-left: 40px;
-  width: 50px;
+  width: 40px;
   border: white 2px solid;
   border-radius: 100px;
 }

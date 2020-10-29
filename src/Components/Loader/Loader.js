@@ -1,18 +1,12 @@
- 
-
- 
- 
-
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import  loader from "../../Assets/loader.png";
-import "./Loader.css"
- 
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import loader from "../../Assets/loader.png";
+import "./Loader.css";
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+    width: "100%",
   },
 });
 
@@ -38,7 +32,7 @@ export default function LinearDeterminate() {
 
   return (
     <div className="loader">
-    <img src={loader} />
+      <img src={loader} />
       <LinearProgress variant="determinate" value={progress} />
     </div>
   );
