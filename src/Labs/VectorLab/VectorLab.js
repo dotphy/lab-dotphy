@@ -1,5 +1,5 @@
 import { Vector } from "p5";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
@@ -149,6 +149,8 @@ export default function VectorLab() {
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
   const [isSliderActive, setSliderStatus] = useState(false);
 
+  useEffect(() => {});
+
   function addNewVector(e) {
     //Add a new Vector Randomly
     setNum(num + 1);
@@ -174,17 +176,25 @@ export default function VectorLab() {
   }
 
   function hanldeXCompChange(e, newValue, id) {
-    let copyVectorsData = vectorsData.slice();
+    let copyVectorsData = [];
+    for (let vectorData of vectorsData) {
+      copyVectorsData.push(Object.assign({}, vectorData));
+    }
     copyVectorsData.find((vector) => {
       return vector.id == id;
     }).x = newValue;
+    setVectorsData(copyVectorsData);
   }
 
   function handleYCompChange(e, newValue, id) {
-    let copyVectorsData = vectorsData.slice();
+    let copyVectorsData = [];
+    for (let vectorData of vectorsData) {
+      copyVectorsData.push(Object.assign({}, vectorData));
+    }
     copyVectorsData.find((vector) => {
       return vector.id == id;
     }).y = newValue;
+    setVectorsData(copyVectorsData);
   }
   function handleSliderClick() {
     setSliderStatus(!isSliderActive);
