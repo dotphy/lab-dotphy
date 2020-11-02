@@ -202,7 +202,6 @@ export default function VectorLab() {
 
   return (
     <React.Fragment>
-      <Controls />
       <div className="vectorlab">
         <P5Wrapper
           sketch={Sketch}

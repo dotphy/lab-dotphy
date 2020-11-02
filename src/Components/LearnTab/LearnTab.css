@@ -1,0 +1,31 @@
+.root {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+.learntab {
+  font-size: 2em;
+  font-weight: 900;
+  width: 50vw;
+  background-color: #242526;
+  color: white;
+
+  margin: 10px 0px 10px 0px;
+}
+.subtopictab {
+  font-size: 0.8em;
+  color: rgb(204, 194, 194);
+}
+.learntab__title {
+  font-size: 0.8em;
+}
+.summary {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 650px) {
+  .learntab {
+    width: 100vw;
+  }
+}

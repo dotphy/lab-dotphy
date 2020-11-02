@@ -3,6 +3,10 @@
   flex-direction: column;
   margin: 30px 0px 0px 10px;
 }
+.icon-materialui {
+  color: white !important;
+}
+
 .icon {
   width: 50px;
   height: 50px;

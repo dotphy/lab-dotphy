@@ -1,5 +1,5 @@
 import { Vector } from "p5";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
@@ -10,14 +10,18 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
 import { SvgSlider } from "../../Assets/icons";
-import data from "./data.json";
-import { SentimentSatisfied } from "@material-ui/icons";
+import Captions from "../../Components/Captions/Captions";
+import { storage } from "../../services/firebase";
+import Loader from "../../Components/Loader/Loader";
+
+let State = {};
+
 const DISPLAY_SIZE = {
   width:
     window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
   height: window.innerHeight / 2,
 };
-const STATE = JSON.parse(data);
+
 function randomVector(name) {
   return {
     id: uuid(),
@@ -143,20 +147,45 @@ function DisplayVectors({
   );
 }
 
-export default function VectorLab() {
+export default function PlayerVectorLab(props) {
   const [num, setNum] = useState(2);
   const [vectorsData, setVectorsData] = useState([randomVector("V1")]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
   const [isSliderActive, setSliderStatus] = useState(false);
   const [timeThen, setTImeThen] = useState(new Date());
+  const [captionText, setCaptionText] = useState(
+    "This is the way to represent Vectors"
+  );
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  //----Controls State -------
+  const [isPaused, setIsPaused] = useState(true);
+
+  useEffect(() => {
+    storage
+      .ref(props.location.state.tutorialRef)
+      .getDownloadURL()
+      .then((url) => {
+        fetch(url)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            State = data;
+            setIsLoaded(true);
+          });
+      });
+  }, []);
 
   setInterval(() => {
     let newDate = new Date();
-    if (newDate - timeThen in STATE) {
-      setNum(STATE[newDate - timeThen]["num"]);
-      setVectorsData(STATE[newDate - timeThen]["vectorsData"]);
-      setActiveVectorId(STATE[newDate - timeThen]["activeVectorId"]);
+    if (newDate - timeThen in State) {
+      console.log(newDate - timeThen);
+      setNum(State[newDate - timeThen]["num"]);
+      setVectorsData(State[newDate - timeThen]["vectorsData"]);
+      setActiveVectorId(State[newDate - timeThen]["activeVectorId"]);
+      setCaptionText(State[newDate - timeThen]["message"]);
     }
   }, 1);
 
@@ -203,49 +232,58 @@ export default function VectorLab() {
 
   return (
     <React.Fragment>
-      <Controls />
-      <div className="vectorlab">
-        <P5Wrapper
-          sketch={Sketch}
-          vectorsData={vectorsData}
-          activeVectorId={activeVectorId}
-        />
-        <div style={{ marginRight: "10px" }}>
-          <DisplayVectors
-            vectorsData={vectorsData}
-            activeVectorId={activeVectorId}
-            handleActiveVector={handleActiveVector}
-            hanldeXCompChange={hanldeXCompChange}
-            handleYCompChange={handleYCompChange}
-            addOperation={addOperation}
-            className={
-              isSliderActive ? "displayvector-open" : "displayvector-close"
-            }
-          />
-          <SvgSlider
-            className={`svg-slider ${
-              isSliderActive ? "svg-slider-on" : "svg-slider-off"
-            }`}
-            onClick={handleSliderClick}
-          />
+      {isLoaded ? (
+        <>
+          <Controls />
+          <div className="vectorlab">
+            <div>
+              <P5Wrapper
+                sketch={Sketch}
+                vectorsData={vectorsData}
+                activeVectorId={activeVectorId}
+              />
+              <Captions captionText={captionText} />
+            </div>
+            <div style={{ marginRight: "10px" }}>
+              <DisplayVectors
+                vectorsData={vectorsData}
+                activeVectorId={activeVectorId}
+                handleActiveVector={handleActiveVector}
+                hanldeXCompChange={hanldeXCompChange}
+                handleYCompChange={handleYCompChange}
+                addOperation={addOperation}
+                className={
+                  isSliderActive ? "displayvector-open" : "displayvector-close"
+                }
+              />
+              <SvgSlider
+                className={`svg-slider ${
+                  isSliderActive ? "svg-slider-on" : "svg-slider-off"
+                }`}
+                onClick={handleSliderClick}
+              />
 
-          <div className="vectorlab__input">
-            <Fab
-              onClick={addNewVector}
-              variant="extended"
-              color="secondary"
-              onMouseEnter={() => {
-                setIsMouseInAddIcon(true);
-              }}
-              onMouseLeave={() => setIsMouseInAddIcon(false)}
-              style={{ padding: "10px" }}
-            >
-              <AddIcon className="vactorlab_input_icon" />
-              {isMouseInAddIcon && (isDesktop() ? "New Vector" : "")}
-            </Fab>
+              <div className="vectorlab__input">
+                <Fab
+                  onClick={addNewVector}
+                  variant="extended"
+                  color="secondary"
+                  onMouseEnter={() => {
+                    setIsMouseInAddIcon(true);
+                  }}
+                  onMouseLeave={() => setIsMouseInAddIcon(false)}
+                  style={{ padding: "10px" }}
+                >
+                  <AddIcon className="vactorlab_input_icon" />
+                  {isMouseInAddIcon && (isDesktop() ? "New Vector" : "")}
+                </Fab>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </React.Fragment>
   );
 }

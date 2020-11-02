@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "./Controls.css";
-import {SvgConfigure, SvgFullScreen, SvgGraph , SvgPause,SvgPlay ,SvgRepeat, Svg3D} from "../../Assets/icons"
- 
+import {
+  SvgConfigure,
+  SvgFullScreen,
+  SvgGraph,
+  SvgPause,
+  SvgPlay,
+  SvgRepeat,
+  Svg3D,
+} from "../../Assets/icons";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
 
 //---------------Individual Control Components --------------
 
-function Play({ status, onClick }) {
-  return status == "play" ? (
-    <SvgPlay onClick={onClick} className="icon" />
+function Play({ isPaused, toggleIsPaused }) {
+  return isPaused ? (
+    <PlayArrowIcon onClick={toggleIsPaused} className="icon icon-materialui" />
   ) : (
-    <SvgPause onClick={onClick} className="icon" />
+    <PauseIcon onClick={toggleIsPaused} className="icon icon-materialui" />
   );
 }
 function Repeat() {
@@ -24,41 +33,35 @@ function Graph({ status, onClick }) {
 
 //-----------------------------------------------------------
 
-function Controls(props) {
-  const [playStatus, setPlayStatus] = useState("pause ");
+function Controls({ isPaused, toggleIsPaused }) {
   const [configureStatus, setConfigureStatus] = useState("on");
   const [graphStatus, setGraphStatus] = useState("off");
-  const [isFullScreenOn , setFullScreenStatus] = useState(false);
+  const [isFullScreenOn, setFullScreenStatus] = useState(false);
 
-   
-
-  function handlePlayClick() {
-    setPlayStatus(playStatus == "play" ? "pause" : "play");
-  }
   function handleConfigureClick() {
     setConfigureStatus(configureStatus == "on" ? "off" : "on");
   }
   function handleGraphClick() {
     setGraphStatus(graphStatus == "on" ? "off" : "on");
   }
-  function IsReload(){
-  document.querySelector(".reload").addEventListener('click', () => {
-    window.location.reload(true);
-  })}
+  function IsReload() {
+    document.querySelector(".reload").addEventListener("click", () => {
+      window.location.reload(true);
+    });
+  }
   function handleFullScreenClick() {
     setFullScreenStatus(!isFullScreenOn);
   }
   return (
     <div className="controls">
-      <Play status={playStatus} onClick={handlePlayClick} />
-      <Repeat className={"reload", <IsReload/>} />
+      <Play isPaused={isPaused} toggleIsPaused={toggleIsPaused} />
+      <Repeat className={("reload", (<IsReload />))} />
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
       <SvgFullScreen onClick={handleFullScreenClick} className={"icon"} />
-      <Svg3D className={"icon"}/>
+      <Svg3D className={"icon"} />
     </div>
   );
 }
-
 
 export default Controls;
