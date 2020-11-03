@@ -148,20 +148,24 @@ function DisplayVectors({
 }
 
 export default function PlayerVectorLab(props) {
+  //-------Original APP's State --------
   const [num, setNum] = useState(2);
   const [vectorsData, setVectorsData] = useState([randomVector("V1")]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
   const [isSliderActive, setSliderStatus] = useState(false);
+  const [captionText, setCaptionText] = useState("");
+  //------------------------------------
+
+  //---- Plyer's Specific  State -------
   const [timeThen, setTImeThen] = useState(new Date());
-  const [captionText, setCaptionText] = useState(
-    "This is the way to represent Vectors"
-  );
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [pausedAt, setPausedAt] = useState(new Date());
+  const [timePaused, setTimePaused] = useState(0);
+  // -------------------------
 
-  //----Controls State -------
-  const [isPaused, setIsPaused] = useState(true);
-
+  //--- Get the Data from firebase storage--
   useEffect(() => {
     storage
       .ref(props.location.state.tutorialRef)
@@ -177,17 +181,28 @@ export default function PlayerVectorLab(props) {
           });
       });
   }, []);
+  //-----------------------------------------
 
   setInterval(() => {
-    let newDate = new Date();
-    if (newDate - timeThen in State) {
-      console.log(newDate - timeThen);
-      setNum(State[newDate - timeThen]["num"]);
-      setVectorsData(State[newDate - timeThen]["vectorsData"]);
-      setActiveVectorId(State[newDate - timeThen]["activeVectorId"]);
-      setCaptionText(State[newDate - timeThen]["message"]);
+    if (!isPaused) {
+      let counter = new Date() - timeThen - timePaused;
+      if (counter in State) {
+        setNum(State[counter]["num"]);
+        setVectorsData(State[counter]["vectorsData"]);
+        setActiveVectorId(State[counter]["activeVectorId"]);
+        setCaptionText(State[counter]["message"]);
+      }
     }
   }, 1);
+
+  function toggleIsPaused() {
+    if (!isPaused) {
+      setPausedAt(new Date());
+    } else {
+      setTimePaused(timePaused + (new Date() - pausedAt));
+    }
+    setIsPaused(!isPaused);
+  }
 
   function addNewVector(e) {
     //Add a new Vector Randomly
@@ -234,7 +249,7 @@ export default function PlayerVectorLab(props) {
     <React.Fragment>
       {isLoaded ? (
         <>
-          <Controls />
+          <Controls isPaused={isPaused} toggleIsPaused={toggleIsPaused} />
           <div className="vectorlab">
             <div>
               <P5Wrapper
