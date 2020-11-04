@@ -5,14 +5,15 @@ import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import Home from "@material-ui/icons/Home";
 import Book from "@material-ui/icons/Book";
 import Forum from "@material-ui/icons/Forum";
-import { SvgLearn } from "../../Assets/icons";
 import { Link } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 
 function Header() {
+  console.log(useRouteMatch());
   return (
     <div className="header">
       <div className="header__left">
-        <img src={dotphy} className="header__icon" />
+        <img src={dotphy} className="header__icon" alt="dotphy logo" />
       </div>
       <div className="header__middle">
         <Link to="/">

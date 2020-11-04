@@ -4,7 +4,6 @@ export default function Sketch(p) {
   let activeVectorData;
   let activeVector;
   let operationedVectorsData = [];
-  let operationedVectors = [];
   const DISPLAY_SIZE = {
     width:
       window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
@@ -22,7 +21,6 @@ export default function Sketch(p) {
   //SETUP ....
   p.setup = () => {
     p.createCanvas(DISPLAY_SIZE.width, DISPLAY_SIZE.height);
-   
   };
 
   //Draw.....
@@ -84,23 +82,21 @@ export default function Sketch(p) {
     }
   }
 
-
   function drawAxes() {
     p.push();
     p.strokeWeight(3);
     p.stroke("gray");
     p.line(20, 0, 20, DISPLAY_SIZE.height);
     p.line(0, 20, DISPLAY_SIZE.width, 20);
-  
-    for(let y = 70; y<DISPLAY_SIZE.height; y+=50){
+
+    for (let y = 70; y < DISPLAY_SIZE.height; y += 50) {
       p.stroke("gray");
-      p.line(18,y,  22, y );
+      p.line(18, y, 22, y);
     }
-    for(let x = 70 ; x<DISPLAY_SIZE.width; x+= 50){
-      p.line(x, 18 ,  x , 22 )
+    for (let x = 70; x < DISPLAY_SIZE.width; x += 50) {
+      p.line(x, 18, x, 22);
     }
-    
-   
+
     p.pop();
   }
 
@@ -111,7 +107,13 @@ export default function Sketch(p) {
 
   function drawVectors() {
     vectors = vectorsData.map((vectorData) => {
-      return new MyVec(vectorData["x"], vectorData["y"], vectorData["color"], vectorData.name, false);
+      return new MyVec(
+        vectorData["x"],
+        vectorData["y"],
+        vectorData["color"],
+        vectorData.name,
+        false
+      );
     });
     vectors.map((vector) => {
       vector.draw();
@@ -123,7 +125,8 @@ export default function Sketch(p) {
       activeVectorData["x"],
       activeVectorData["y"],
       "#0479E7",
-      activeVectorData["name"],true
+      activeVectorData["name"],
+      true
     );
     p.push();
     p.translate(10, 10);
@@ -140,50 +143,45 @@ export default function Sketch(p) {
     p.pop();
     activeVector.draw();
   }
-  
-  function  drawOperationed_add(){
 
-    for(let vector of vectorsData){
-      if(vector.operations.length != 0 ){
-       for(let operation of vector.operations){
-         if(operation.operationName == "add"){
-         let vec1 = new MyVec(vector.x,vector.y , "white", vector.name);
-         let vec2 = getVectorData( operation.operationData.operand, vectorsData);
-         vec2 = new MyVec(vec2.x, vec2.y, "white", vec2.name);
-         vec1.add(vec2);
+  function drawOperationed_add() {
+    for (let vector of vectorsData) {
+      if (vector.operations.length != 0) {
+        for (let operation of vector.operations) {
+          if (operation.operationName == "add") {
+            let vec1 = new MyVec(vector.x, vector.y, "white", vector.name);
+            let vec2 = getVectorData(
+              operation.operationData.operand,
+              vectorsData
+            );
+            vec2 = new MyVec(vec2.x, vec2.y, "white", vec2.name);
+            vec1.add(vec2);
+          }
         }
-        
-        
       }
     }
-
   }
-}
-function   drawOperationed_scale(){
- 
-  for(let vector of vectorsData){
-    if(vector.operations.length != 0 ){
-     for(let operation of vector.operations){
-       if(operation.operationName == "scale"){
-        
-      
-          vector.x = Math.floor(vector.x * operation.operationData.operationValue);
-          vector.y = Math.floor( vector.y * operation.operationData.operationValue);
-          operation.operationData.operationValue = 1 ;
-          
+  function drawOperationed_scale() {
+    for (let vector of vectorsData) {
+      if (vector.operations.length != 0) {
+        for (let operation of vector.operations) {
+          if (operation.operationName == "scale") {
+            vector.x = Math.floor(
+              vector.x * operation.operationData.operationValue
+            );
+            vector.y = Math.floor(
+              vector.y * operation.operationData.operationValue
+            );
+            operation.operationData.operationValue = 1;
+          }
+        }
       }
-      
-      
     }
   }
-
-}
-}
 }
 
-
-
-
-function getVectorData(id, allObjs){
-  return allObjs.find((obj) => {return obj.id == id})
+function getVectorData(id, allObjs) {
+  return allObjs.find((obj) => {
+    return obj.id == id;
+  });
 }

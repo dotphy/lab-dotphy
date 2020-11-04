@@ -1,18 +1,20 @@
-import { Vector } from "p5";
 import React, { useState, useEffect } from "react";
 import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
-import Operation from "./Components/Operation";
-import Controls from "../../Components/Controls/Controls";
 import "./VectorLab.css";
+
+import Operation from "../../Components/Operations/Operation";
+import Controls from "../../Components/Controls/Controls";
+
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
 import { SvgSlider } from "../../Assets/icons";
 import Captions from "../../Components/Captions/Captions";
-import { storage } from "../../services/firebase";
 import Loader from "../../Components/Loader/Loader";
+
+import { storage } from "../../services/firebase";
 
 let State = {};
 
@@ -35,7 +37,7 @@ function randomVector(name) {
 
 function getVectorData(id, allObjs) {
   return allObjs.find((obj) => {
-    return obj.id == id;
+    return obj.id === id;
   });
 }
 function isDesktop() {
@@ -56,7 +58,7 @@ function DisplayVectorsTab({
   let xComp = <p className="numbers">{String(vectorData.x) + " units"}</p>;
   let yComp = <p className="numbers">{String(vectorData.y) + " units"}</p>;
   let operations = <div></div>;
-  if (vectorData.id == activeVectorId) {
+  if (vectorData.id === activeVectorId) {
     xComp = (
       <Slider
         defaultValue={vectorData.x}
@@ -140,6 +142,7 @@ function DisplayVectors({
             hanldeXCompChange={hanldeXCompChange}
             handleYCompChange={handleYCompChange}
             addOperation={addOperation}
+            key={vectorData.id}
           />
         );
       })}
@@ -158,7 +161,7 @@ export default function PlayerVectorLab(props) {
   //------------------------------------
 
   //---- Plyer's Specific  State -------
-  const [timeThen, setTImeThen] = useState(new Date());
+  const [timeThen, setTimeThen] = useState(new Date());
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [pausedAt, setPausedAt] = useState(new Date());
@@ -203,6 +206,10 @@ export default function PlayerVectorLab(props) {
     }
     setIsPaused(!isPaused);
   }
+  function reloadExperiment() {
+    console.log("Done !! ");
+    setTimeThen(new Date());
+  }
 
   function addNewVector(e) {
     //Add a new Vector Randomly
@@ -231,14 +238,14 @@ export default function PlayerVectorLab(props) {
   function hanldeXCompChange(e, newValue, id) {
     let copyVectorsData = vectorsData.slice();
     copyVectorsData.find((vector) => {
-      return vector.id == id;
+      return vector.id === id;
     }).x = newValue;
   }
 
   function handleYCompChange(e, newValue, id) {
     let copyVectorsData = vectorsData.slice();
     copyVectorsData.find((vector) => {
-      return vector.id == id;
+      return vector.id === id;
     }).y = newValue;
   }
   function handleSliderClick() {
@@ -249,7 +256,11 @@ export default function PlayerVectorLab(props) {
     <React.Fragment>
       {isLoaded ? (
         <>
-          <Controls isPaused={isPaused} toggleIsPaused={toggleIsPaused} />
+          <Controls
+            isPaused={isPaused}
+            toggleIsPaused={toggleIsPaused}
+            reloadExperiment={reloadExperiment}
+          />
           <div className="vectorlab">
             <div>
               <P5Wrapper

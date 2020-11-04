@@ -1,10 +1,8 @@
-import { Vector } from "p5";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import P5Wrapper from "react-p5-wrapper";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
-import Operation from "./Components/Operation";
-import Controls from "../../Components/Controls/Controls";
+import Operation from "../../Components/Operations/Operation";
 import "./VectorLab.css";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
@@ -30,7 +28,7 @@ function randomVector(name) {
 
 function getVectorData(id, allObjs) {
   return allObjs.find((obj) => {
-    return obj.id == id;
+    return obj.id === id;
   });
 }
 function isDesktop() {
@@ -51,10 +49,10 @@ function DisplayVectorsTab({
   let xComp = <p className="numbers">{String(vectorData.x) + " units"}</p>;
   let yComp = <p className="numbers">{String(vectorData.y) + " units"}</p>;
   let operations = <div></div>;
-  if (vectorData.id == activeVectorId) {
+  if (vectorData.id === activeVectorId) {
     xComp = (
       <Slider
-        defaultValue={vectorData.x}
+        value={vectorData.x}
         onChange={(e, newValue) => {
           hanldeXCompChange(e, newValue, vectorData.id);
         }}
@@ -65,7 +63,7 @@ function DisplayVectorsTab({
     );
     yComp = (
       <Slider
-        defaultValue={vectorData.y}
+        value={vectorData.y}
         onChange={(e, newValue) => {
           handleYCompChange(e, newValue, vectorData.id);
         }}
@@ -135,6 +133,7 @@ function DisplayVectors({
             hanldeXCompChange={hanldeXCompChange}
             handleYCompChange={handleYCompChange}
             addOperation={addOperation}
+            key={vectorData.id}
           />
         );
       })}
@@ -149,8 +148,6 @@ export default function VectorLab() {
   const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
   const [isSliderActive, setSliderStatus] = useState(false);
 
-  useEffect(() => {});
-
   function addNewVector(e) {
     //Add a new Vector Randomly
     setNum(num + 1);
@@ -161,6 +158,7 @@ export default function VectorLab() {
   }
 
   function addOperation(e, v1_id, v2_id, operationName, operationValue) {
+    //Apply a operation on a specific vector
     e.preventDefault();
     let copyVectorsData = vectorsData.slice();
     let v1 = getVectorData(v1_id, copyVectorsData);
@@ -181,7 +179,7 @@ export default function VectorLab() {
       copyVectorsData.push(Object.assign({}, vectorData));
     }
     copyVectorsData.find((vector) => {
-      return vector.id == id;
+      return vector.id === id;
     }).x = newValue;
     setVectorsData(copyVectorsData);
   }
@@ -192,7 +190,7 @@ export default function VectorLab() {
       copyVectorsData.push(Object.assign({}, vectorData));
     }
     copyVectorsData.find((vector) => {
-      return vector.id == id;
+      return vector.id === id;
     }).y = newValue;
     setVectorsData(copyVectorsData);
   }
@@ -203,11 +201,13 @@ export default function VectorLab() {
   return (
     <React.Fragment>
       <div className="vectorlab">
-        <P5Wrapper
-          sketch={Sketch}
-          vectorsData={vectorsData}
-          activeVectorId={activeVectorId}
-        />
+        <div>
+          <P5Wrapper
+            sketch={Sketch}
+            vectorsData={vectorsData}
+            activeVectorId={activeVectorId}
+          />
+        </div>
         <div style={{ marginRight: "10px" }}>
           <DisplayVectors
             vectorsData={vectorsData}

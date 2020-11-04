@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Controls.css";
 import {
   SvgConfigure,
   SvgFullScreen,
   SvgGraph,
-  SvgPause,
-  SvgPlay,
   SvgRepeat,
   Svg3D,
 } from "../../Assets/icons";
@@ -33,16 +31,16 @@ function Graph({ status, onClick }) {
 
 //-----------------------------------------------------------
 
-function Controls({ isPaused, toggleIsPaused }) {
+function Controls({ isPaused, toggleIsPaused, reloadExperiment }) {
   const [configureStatus, setConfigureStatus] = useState("on");
   const [graphStatus, setGraphStatus] = useState("off");
   const [isFullScreenOn, setFullScreenStatus] = useState(false);
 
   function handleConfigureClick() {
-    setConfigureStatus(configureStatus == "on" ? "off" : "on");
+    setConfigureStatus(configureStatus === "on" ? "off" : "on");
   }
   function handleGraphClick() {
-    setGraphStatus(graphStatus == "on" ? "off" : "on");
+    setGraphStatus(graphStatus === "on" ? "off" : "on");
   }
   function IsReload() {
     document.querySelector(".reload").addEventListener("click", () => {
@@ -55,7 +53,10 @@ function Controls({ isPaused, toggleIsPaused }) {
   return (
     <div className="controls">
       <Play isPaused={isPaused} toggleIsPaused={toggleIsPaused} />
-      <Repeat className={("reload", (<IsReload />))} />
+      <Repeat
+        className={("reload", (<IsReload />))}
+        onClick={reloadExperiment}
+      />
       <Configure status={configureStatus} onClick={handleConfigureClick} />
       <Graph status={graphStatus} onClick={handleGraphClick} />
       <SvgFullScreen onClick={handleFullScreenClick} className={"icon"} />

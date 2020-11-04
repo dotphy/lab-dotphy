@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Components/Header/Header";
 import Loader from "./Components/Loader/Loader";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const Learn = React.lazy(() => import("./Learn/Learn"));
 const VectorLab = React.lazy(() => import("./Labs/VectorLab/VectorLab"));
