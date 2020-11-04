@@ -11,20 +11,18 @@
 <p> For Example , You can pick a certain Element available like a Ball and apply certain Physical properties available like <i>Force Vector</i>, Set its magnitude and direction on that Element and see the respective result . </p>
 <br>
 
-**😮But What are we currently tried to make**
-<p> We are on the mission to make all that labs that are the needs of a High school student. As a starting point We are currently trying to make a Vector lab, Where user can pick as many vectors he may need to work with and change the magntiude of them, direction of them and see what additon, subtraction , Dot-Product, Cross-Product actually means</p>
+**😮But What are we currently trying to make ?**
+<p> We are on the mission to make all that labs that are the needs of a High school student. As a starting point We are currently trying to make a Vector lab, Where user can pick as many vectors he may need to work with and change the magntiude of them, direction of them and see what additon, subtraction , Dot-Product, Cross-Product actually means in context of "Vectors"</p>
 <br>
 
-**Tech Stack Used :**
+**✋ And And !**
+<p> Full-Fledged courses for those topics, No no, Not the crappy video course, But something more intervactive mini tutorials where learners can pause the tutorial and play with the setup at that point of time in tutorial accordingly .... 
+</p>
+<br>
+ 
+ **👬 Want to Contribute ?**
 
-```
-var TECH_STACK = {
-ReactJS,
-p5js : " as a animation library",
-matterjs : "Our Phyics Engine",
-//THat's all for now
-}
-
-```
-  
+- Find out on What Specific topic of Physics you want to work 
+- Get in touch with <a href="https://discord.gg/RREmwZdP">us</a> or raise a issue regarding that 
+- For a specific topic you can enhance the functionality or you can make some mini-tutorials for learners
 
