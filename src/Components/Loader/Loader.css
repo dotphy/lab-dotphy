@@ -1,9 +1,9 @@
 .loader {
-  background-color: #242526;
+  background-color: #18181a;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   justify-content: center;
   align-items: center;
 }
@@ -11,17 +11,26 @@
 .loader img {
   animation-name: rotate;
   animation-iteration-count: infinite;
-  animation-duration: 1s;
+  animation-duration: 0.01s;
+}
+.loader__progress {
+  border-radius: 5px !important;
+  margin-top: 50px;
+  width: 10vw !important;
+  height: 8px !important;
+  fill: white !important;
+  border: 1px solid black;
 }
 
 @keyframes rotate {
   0% {
-    transform: rotate(-10deg);
+    transform: rotate(-2deg);
   }
+
   50% {
-    transform: rotate(10deg);
+    transform: rotate(1deg);
   }
   100% {
-    transform: rotate(-10deg);
+    transform: rotate(-deg);
   }
 }
