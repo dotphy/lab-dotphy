@@ -1,9 +1,11 @@
+export let activeVectorAngle = 0;
 export default function Sketch(p) {
   let vectorsData = [];
   let vectors = [];
   let activeVectorData;
   let activeVector;
   let operationedVectorsData = [];
+
   const DISPLAY_SIZE = {
     width:
       window.innerWidth > 700 ? window.innerWidth / 2 : window.innerWidth - 20,
@@ -26,10 +28,11 @@ export default function Sketch(p) {
   //Draw.....
   p.draw = () => {
     p.background("#242526");
+
     shiftOrigin();
+    drawActiveVectors();
     drawAxes();
     drawVectors();
-    drawActiveVectors();
     drawOperationed_add();
     drawOperationed_scale();
   };
@@ -61,6 +64,21 @@ export default function Sketch(p) {
       p.line(0, 0, this.vec.x, this.vec.y);
       p.pop();
     };
+    drawAngle() {
+      p.fill("#242526");
+      p.stroke("white");
+      p.arc(
+        20,
+        20,
+        this.vec.mag() / 4,
+        this.vec.mag() / 4,
+        0,
+        -this.vec.angleBetween(p.createVector(10, 0))
+      );
+    }
+    calculateAngle() {
+      activeVectorAngle = this.vec.angleBetween(p.createVector(10, 0));
+    }
     add(vec2) {
       let copyVec1 = this.vec;
       let res = copyVec1.add(vec2.vec);
@@ -141,7 +159,9 @@ export default function Sketch(p) {
     p.text(`| \n${activeVector.vec.x}`, activeVector.vec.x + 10, 0);
     p.pop();
     p.pop();
+    activeVector.drawAngle();
     activeVector.draw();
+    activeVector.calculateAngle();
   }
 
   function drawOperationed_add() {
