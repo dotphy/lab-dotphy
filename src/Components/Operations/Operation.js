@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import "./Operation.css";
 
-import { MenuItem, Select, Button, TextField } from "@material-ui/core";
+import {
+  MenuItem,
+  Select,
+  Button,
+  TextField,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 function OperationAdd(props) {
   const [selectedInp, setSelectedInp] = useState("");
@@ -110,19 +119,27 @@ export default function Operations(props) {
   }
 
   return (
-    <div className="operations">
-      <div className="label">Operations</div>
-      <div className="operations__sets">
-        <OperationAdd
-          vectorData={props.vectorData}
-          vectorsData={props.vectorsData}
-          addOperation={props.addOperation}
-        />
-        <OperationScale
-          vectorData={props.vectorData}
-          addOperation={props.addOperation}
-        />
-      </div>
-    </div>
+    <Accordion className="operations">
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <div className="label">Operations</div>
+      </AccordionSummary>
+      <AccordionDetails>
+        <div className="operations__sets">
+          <OperationAdd
+            vectorData={props.vectorData}
+            vectorsData={props.vectorsData}
+            addOperation={props.addOperation}
+          />
+          <OperationScale
+            vectorData={props.vectorData}
+            addOperation={props.addOperation}
+          />
+        </div>
+      </AccordionDetails>
+    </Accordion>
   );
 }

@@ -2,10 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  flex-direction: column;
+  width: 100%;
   padding-bottom: 10px;
+  background-color: inherit;
+  color: white;
 }
-.operations__label {
+v .operations__label {
   display: flex;
 }
 
@@ -15,8 +18,8 @@
   align-items: center;
 }
 .operationset {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
 }
 
