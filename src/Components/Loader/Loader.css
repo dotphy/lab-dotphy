@@ -34,3 +34,9 @@
     transform: rotate(-deg);
   }
 }
+
+@media only screen and (max-width: 650px) {
+  .loader__progress {
+    width: 50vw !important;
+  }
+}
