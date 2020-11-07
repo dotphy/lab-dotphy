@@ -30,9 +30,9 @@ export default function Sketch(p) {
     p.background("#242526");
 
     shiftOrigin();
-    drawActiveVectors();
     drawAxes();
     drawVectors();
+    drawActiveVectors();
     drawOperationed_add();
     drawOperationed_scale();
   };
@@ -65,6 +65,7 @@ export default function Sketch(p) {
       p.pop();
     };
     drawAngle() {
+      p.push();
       p.fill("#242526");
       p.stroke("white");
       p.arc(
@@ -75,6 +76,7 @@ export default function Sketch(p) {
         0,
         -this.vec.angleBetween(p.createVector(10, 0))
       );
+      p.pop();
     }
     calculateAngle() {
       activeVectorAngle = this.vec.angleBetween(p.createVector(10, 0));
@@ -159,9 +161,7 @@ export default function Sketch(p) {
     p.text(`| \n${activeVector.vec.x}`, activeVector.vec.x + 10, 0);
     p.pop();
     p.pop();
-    activeVector.drawAngle();
     activeVector.draw();
-    activeVector.calculateAngle();
   }
 
   function drawOperationed_add() {
