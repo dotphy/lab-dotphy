@@ -1,0 +1,16 @@
+.link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.link .MuiSvgIcon-root {
+}
+
+@media only screen and(max-width: 650px) {
+  .learn {
+    display: flex;
+    justify-content: start;
+    height: 10px !important;
+  }
+}

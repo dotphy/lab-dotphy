@@ -3,6 +3,8 @@ import LearnTab from "../Components/LearnTab/LearnTab";
 import "./Learn.css";
 import { storage } from "../services/firebase";
 import Loader from "../Components/Loader/Loader";
+import { Link } from "react-router-dom";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 export default class Learn extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,13 @@ export default class Learn extends React.Component {
   }
 
   render() {
-    return <div>{this.state.elem}</div>;
+    return (
+      <div className="learn">
+        <Link to="/" className="link">
+          <ArrowBackIosIcon /> Back to Lab
+        </Link>
+        <div>{this.state.elem}</div>;
+      </div>
+    );
   }
 }

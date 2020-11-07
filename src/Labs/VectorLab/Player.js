@@ -209,6 +209,7 @@ export default function PlayerVectorLab(props) {
   function reloadExperiment() {
     console.log("Done !! ");
     setTimeThen(new Date());
+    setTimePaused(0);
   }
 
   function addNewVector(e) {

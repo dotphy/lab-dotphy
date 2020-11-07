@@ -64,20 +64,6 @@ export default function Sketch(p) {
       p.line(0, 0, this.vec.x, this.vec.y);
       p.pop();
     };
-    drawAngle() {
-      p.push();
-      p.fill("#242526");
-      p.stroke("white");
-      p.arc(
-        20,
-        20,
-        this.vec.mag() / 4,
-        this.vec.mag() / 4,
-        0,
-        -this.vec.angleBetween(p.createVector(10, 0))
-      );
-      p.pop();
-    }
     calculateAngle() {
       activeVectorAngle = this.vec.angleBetween(p.createVector(10, 0));
     }

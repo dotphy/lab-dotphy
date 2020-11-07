@@ -8,8 +8,8 @@ import Forum from "@material-ui/icons/Forum";
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
 
-function Header() {
-  console.log(useRouteMatch());
+function Header(props) {
+  console.log(window.location.pathname);
   return (
     <div className="header">
       <div className="header__left">

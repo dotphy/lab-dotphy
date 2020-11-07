@@ -5,15 +5,18 @@
 }
 .learntab {
   font-size: 2em;
-  font-weight: 900;
+  font-weight: bolder;
   width: 50vw;
   background-color: #242526;
   color: white;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
 
   margin: 10px 0px 10px 0px;
 }
 .subtopictab {
-  font-size: 0.8em;
+  font-size: 0.4em !important;
   color: rgb(204, 194, 194);
 }
 .learntab__title {
@@ -26,6 +29,7 @@
 
 @media only screen and (max-width: 650px) {
   .learntab {
-    width: 100vw;
+    width: 80vw;
+    padding: 5px;
   }
 }

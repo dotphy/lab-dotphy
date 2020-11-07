@@ -14,11 +14,8 @@
   animation-duration: 0.01s;
 }
 .loader__progress {
-  border-radius: 5px !important;
   margin-top: 50px;
   width: 10vw !important;
-  height: 8px !important;
-  fill: white !important;
   border: 1px solid black;
 }
 
