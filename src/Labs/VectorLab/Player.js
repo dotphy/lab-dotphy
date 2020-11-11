@@ -182,6 +182,7 @@ export default function PlayerVectorLab(props) {
 
     getData(tutorialRef, audioRef).then(() => {
       PlayTutorial();
+      setIsLoaded(true);
     });
   }, []);
   //-----------------------------------------
