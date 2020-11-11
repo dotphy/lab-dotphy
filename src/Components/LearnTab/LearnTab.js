@@ -18,11 +18,17 @@ function SubTopicTab(props) {
     >
       {isLoaded ? (
         <Redirect
-          to={{ pathname: "/play", state: { tutorialRef: props.subTopicRef } }}
+          to={{
+            pathname: "/play",
+            state: {
+              tutorialRef: props.subTopicRef,
+              audioRef: props.subAudioRef,
+            },
+          }}
         />
       ) : (
         <p className="subtopictab">
-          {props.subTopicRef.split("/")[1].split(".")[0].split("-").join(" ")}
+          {props.subTopicRef.split("/")[2].split(".")[0].split("-").join(" ")}
         </p>
       )}
     </div>
@@ -41,7 +47,7 @@ export default class LearnTab extends React.Component {
     let subTopicsCopy = [];
 
     storage
-      .ref(this.props.title)
+      .ref(this.props.title + "/Tutorials/")
       .listAll()
       .then((ref) => {
         ref.items.map((item) => {
@@ -52,7 +58,12 @@ export default class LearnTab extends React.Component {
         });
         this.setState({
           elems: this.state.subTopics.map((subTopic) => {
-            return <SubTopicTab subTopicRef={subTopic} />;
+            return (
+              <SubTopicTab
+                subTopicRef={subTopic}
+                subAudioRef={subTopic.replace("Tutorials", "Audio")}
+              />
+            );
           }),
         });
       });

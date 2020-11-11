@@ -11,3 +11,13 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const storage = firebase.storage();
+
+export async function getTutorial(ref) {
+  const downloadURL = await storage.ref(ref).getDownloadURL();
+  const response = await fetch(downloadURL);
+  return response.json();
+}
+
+export async function getAudio(ref) {
+  const downloadURL = await storage.ref(ref).getDownloadURL();
+}
