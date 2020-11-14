@@ -1,4 +1,3 @@
-export let activeVectorAngle = 0;
 export default function Sketch(p) {
   let vectorsData = [];
   let vectors = [];
@@ -64,9 +63,22 @@ export default function Sketch(p) {
       p.line(0, 0, this.vec.x, this.vec.y);
       p.pop();
     };
-    calculateAngle() {
-      activeVectorAngle = this.vec.angleBetween(p.createVector(10, 0));
+    drawAngle() {
+      p.push();
+      p.strokeWeight(2);
+      p.stroke(this.c);
+      p.fill("rgba(100,0,0,0)");
+      p.arc(
+        20,
+        20,
+        this.vec.mag() / 2,
+        this.vec.mag() / 2,
+        0,
+        -this.vec.angleBetween(p.createVector(10, 0))
+      );
+      p.pop();
     }
+
     add(vec2) {
       let copyVec1 = this.vec;
       let res = copyVec1.add(vec2.vec);
@@ -148,6 +160,7 @@ export default function Sketch(p) {
     p.pop();
     p.pop();
     activeVector.draw();
+    activeVector.drawAngle();
   }
 
   function drawOperationed_add() {
