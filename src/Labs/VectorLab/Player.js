@@ -10,7 +10,7 @@ import Controls from "../../Components/Controls/Controls";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import { Fab, Slider } from "@material-ui/core";
-import { SvgSlider } from "../../Assets/icons";
+import { SvgSlider, SvgAngle } from "../../Assets/icons";
 import Captions from "../../Components/Captions/Captions";
 import Loader from "../../Components/Loader/Loader";
 
@@ -66,7 +66,7 @@ function DisplayVectorsTab({
   if (vectorData.id === activeVectorId) {
     xComp = (
       <Slider
-        defaultValue={vectorData.x}
+        value={vectorData.x}
         onChange={(e, newValue) => {
           hanldeXCompChange(e, newValue, vectorData.id);
         }}
@@ -77,7 +77,7 @@ function DisplayVectorsTab({
     );
     yComp = (
       <Slider
-        defaultValue={vectorData.y}
+        value={vectorData.y}
         onChange={(e, newValue) => {
           handleYCompChange(e, newValue, vectorData.id);
         }}
@@ -119,6 +119,18 @@ function DisplayVectorsTab({
         <div className="displayvectorstab__data__ycomp">
           <p> Vertical Component </p>
           {yComp}
+        </div>
+        <div className="displayvectorstab__data__angle">
+          <div>
+            <SvgAngle className="displayvectorstab__data__angle-icon" />
+            Angle
+          </div>
+          <div className="displayvectorstab__data__angle-text">
+            {Math.floor(
+              (Math.atan(vectorData.y / vectorData.x) * 180) / Math.PI
+            )}
+            <sup> °</sup>
+          </div>
         </div>
         <div>{operations}</div>
       </div>

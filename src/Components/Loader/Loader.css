@@ -11,7 +11,8 @@
 .loader img {
   animation-name: rotate;
   animation-iteration-count: infinite;
-  animation-duration: 0.01s;
+  animation-duration: s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .loader__progress {
   margin-top: 50px;
@@ -21,14 +22,14 @@
 
 @keyframes rotate {
   0% {
-    transform: rotate(-2deg);
+    transform: rotate(-360deg);
   }
 
   50% {
-    transform: rotate(1deg);
+    transform: rotate(360deg);
   }
   100% {
-    transform: rotate(-deg);
+    transform: rotate(-360deg);
   }
 }
 
