@@ -182,43 +182,53 @@ export default function PlayerVectorLab(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [pausedAt, setPausedAt] = useState(new Date());
+  const [timePaused, setTimePaused] = useState(0);
+  const [playerInterval, setPlayerInterval] = useState("");
   // -------------------------
 
   //--- Get the Data from firebase storage--
   useEffect(() => {
-    console.log();
     let tutorialRef = props.location.state.tutorialRef;
     let audioRef = tutorialRef
       .replace("Tutorials", "Audio")
       .replace("json", "mp4");
 
     getData(tutorialRef, audioRef).then(() => {
-      PlayTutorial();
       setIsLoaded(true);
+      PlayTutorial(false);
     });
   }, []);
+
   //-----------------------------------------
-  function PlayTutorial() {
-    setInterval(() => {
-      if (!isPaused) {
-        let counter = new Date().getTime() - timeThen;
-        if (counter in State) {
-          setNum(State[counter]["num"]);
-          setVectorsData(State[counter]["vectorsData"]);
-          setActiveVectorId(State[counter]["activeVectorId"]);
-          setCaptionText(State[counter]["message"]);
+  function PlayTutorial(ispsd) {
+    setPlayerInterval(
+      setInterval(() => {
+        if (ispsd) {
+          let counter = new Date().getTime() - timeThen;
+          if (counter in State) {
+            setNum(State[counter]["num"]);
+            setVectorsData(State[counter]["vectorsData"]);
+            setActiveVectorId(State[counter]["activeVectorId"]);
+            setCaptionText(State[counter]["message"]);
+          }
         }
-      }
-    }, 1);
+      }, 1)
+    );
   }
 
   function toggleIsPaused() {
-    setIsPaused(!isPaused);
-  }
-  function reloadExperiment() {
-    setTimeThen(new Date());
-  }
+    if (!isPaused) {
+      setPausedAt(new Date());
+      setIsPaused(!isPaused);
 
+      clearInterval(playerInterval);
+    } else {
+      setIsPaused(!isPaused);
+      setTimePaused(timePaused + (new Date() - pausedAt));
+      PlayTutorial(isPaused);
+    }
+  }
+  function reloadExperiment() {}
   function addNewVector(e) {
     //Add a new Vector Randomly
     setNum(num + 1);
