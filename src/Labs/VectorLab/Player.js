@@ -203,7 +203,7 @@ export default function PlayerVectorLab(props) {
   function PlayTutorial(ispsd) {
     setPlayerInterval(
       setInterval(() => {
-        if (ispsd) {
+        if (!ispsd) {
           let counter = new Date().getTime() - timeThen;
           if (counter in State) {
             setNum(State[counter]["num"]);
@@ -225,7 +225,7 @@ export default function PlayerVectorLab(props) {
     } else {
       setIsPaused(!isPaused);
       setTimePaused(timePaused + (new Date() - pausedAt));
-      PlayTutorial(isPaused);
+      PlayTutorial(!isPaused);
     }
   }
   function reloadExperiment() {}
