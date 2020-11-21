@@ -19,7 +19,6 @@ function Header(props) {
     }
   }
 
-  console.log(window.location.pathname);
   return (
     <div className="header">
       <div className="header__left">
