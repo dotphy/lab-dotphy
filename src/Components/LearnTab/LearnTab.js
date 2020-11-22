@@ -51,7 +51,12 @@ export default class LearnTab extends React.Component {
       .listAll()
       .then((ref) => {
         ref.items.map((item) => {
-          subTopicsCopy.push(item.location.path_);
+          let obj = {};
+          obj.name = item.location.path_;
+          item.getMetadata().then((data) => {
+            console.log((obj.time = new Date(data.timeCreated).getTime()));
+          });
+          subTopicsCopy.push(obj);
         });
         this.setState({
           subTopics: subTopicsCopy,
@@ -60,8 +65,8 @@ export default class LearnTab extends React.Component {
           elems: this.state.subTopics.map((subTopic) => {
             return (
               <SubTopicTab
-                subTopicRef={subTopic}
-                subAudioRef={subTopic.replace("Tutorials", "Audio")}
+                subTopicRef={subTopic.name}
+                subAudioRef={subTopic.name.replace("Tutorials", "Audio")}
               />
             );
           }),
@@ -79,8 +84,7 @@ export default class LearnTab extends React.Component {
             id="panel1a-header"
           >
             <Typography className="learntab__title">
-              {" "}
-              {this.props.title}
+              {this.props.title.split("-")[1]}
             </Typography>
           </AccordionSummary>
           <AccordionDetails className="summary">

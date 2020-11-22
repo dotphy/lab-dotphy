@@ -8,32 +8,25 @@ import { Link } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import VectorIcon from "../Assets/VectorIcon.svg";
 
+async function getTopics() {
+  let topics = [];
+  let ref = await storage.ref().listAll();
+  await ref.prefixes.map((subRef) => {
+    topics.push(subRef.location.path_);
+  });
+
+  return topics.slice();
+}
+
 export default function Learn() {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let topicsCopy = [];
-    storage
-      .ref()
-      .listAll()
-      .then((ref) => {
-        ref.prefixes.map((subRef) => {
-          topicsCopy.push(subRef.location.path_);
-        });
-      })
-      .then(() => {
-        setTopics(topicsCopy);
-        setIsLoading(false);
-        topicsCopy.map((topic) => {
-          storage
-            .ref(topic)
-            .getMetadata()
-            .then(function (metadata) {
-              console.log(metadata);
-            });
-        });
-      });
+    getTopics().then((result) => {
+      setTopics(result.slice());
+      setIsLoading(false);
+    });
   }, []);
 
   return (
