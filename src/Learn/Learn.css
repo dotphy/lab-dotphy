@@ -3,14 +3,11 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  margin: 2vw 0vw 0vw 1vw;
 }
+
 .link .MuiSvgIcon-root {
 }
 
 @media only screen and(max-width: 650px) {
-  .learn {
-    display: flex;
-    justify-content: start;
-    height: 10px !important;
-  }
 }

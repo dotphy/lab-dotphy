@@ -36,9 +36,10 @@
 }
 .header__option-active {
   border-bottom: 3px solid white;
+  color: white;
 }
 .header__option-active .MuiSvgIcon-root {
-  color: white;
+  color: white !important;
 }
 
 .header__option .MuiSvgIcon-root {

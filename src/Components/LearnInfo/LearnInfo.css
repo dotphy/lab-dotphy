@@ -1,0 +1,19 @@
+.learninfo__icon {
+  width: 100px !important;
+  height: 100px !important;
+  border: 3px solid white !important;
+}
+
+.learninfo {
+  display: flex;
+  margin: 2vw 20vw 0vw 20vw;
+}
+
+.text {
+  margin: 2vw 0vw;
+}
+.learninfo__text {
+  color: white;
+  margin-left: 10vw;
+  width: 35vw;
+}

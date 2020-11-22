@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import dotphy from "../../Assets/dotphy.png";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
@@ -10,6 +10,10 @@ import { useRouteMatch } from "react-router-dom";
 
 function Header(props) {
   const [active, setActive] = useState(1);
+
+  useEffect(() => {
+    checkRoute();
+  }, []);
 
   function checkRoute() {
     if (window.location.href.split("/")[3] == "") {

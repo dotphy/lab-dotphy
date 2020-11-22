@@ -3,8 +3,10 @@ import LearnTab from "../Components/LearnTab/LearnTab";
 import "./Learn.css";
 import { storage } from "../services/firebase";
 import Loader from "../Components/Loader/Loader";
+import LearnInfo from "../Components/LearnInfo/LearnInfo";
 import { Link } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import VectorIcon from "../Assets/VectorIcon.svg";
 
 export default function Learn() {
   const [topics, setTopics] = useState([]);
@@ -23,6 +25,14 @@ export default function Learn() {
       .then(() => {
         setTopics(topicsCopy);
         setIsLoading(false);
+        topicsCopy.map((topic) => {
+          storage
+            .ref(topic)
+            .getMetadata()
+            .then(function (metadata) {
+              console.log(metadata);
+            });
+        });
       });
   }, []);
 
@@ -35,9 +45,18 @@ export default function Learn() {
         {isLoading ? (
           <Loader />
         ) : (
-          topics.map((topic) => {
-            return <LearnTab title={topic}> </LearnTab>;
-          })
+          <>
+            <LearnInfo
+              tutorialAvatar={VectorIcon}
+              tutorialName={"Vectors"}
+              tutorialDescription={
+                "Vector will come across you on the every next page in your Physics Book. So, having a conceptual understanding of vectors will pay you off"
+              }
+            />
+            {topics.map((topic) => {
+              return <LearnTab title={topic}> </LearnTab>;
+            })}
+          </>
         )}
       </div>
       ;
