@@ -2,24 +2,43 @@
   width: 100vw;
   display: flex;
   margin: 0vw 20vw;
+  --margin-icon: 20px;
 }
 .learntab {
   font-size: 2em;
   font-weight: bolder;
+  word-spacing: 1px;
+  letter-spacing: 0.2px;
   width: 50vw;
   color: #ffffff;
   background-color: #2c3e50;
   border-radius: 10px;
-  padding: 16px;
+  padding: 5px;
   cursor: pointer;
 
   margin: 10px 0px 10px 0px;
 }
 .subtopictab {
-  font-size: 0.4em !important;
-  color: rgb(204, 194, 194);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.5em !important;
+  font-weight: lighter;
+  word-spacing: 1px;
+  color: white;
+  padding: 10px 10px 10px 40px;
+  margin: 5px 0px;
+  border-radius: 5px;
+  background-color: #a9313f;
 }
-.learntab__title {
+.subtopictab:hover {
+  transition: 1s;
+  --margin-icon: 10px;
+}
+.subtopic-icon {
+  margin-right: var(--margin-icon);
+}
+.sub .learntab__title {
   font-size: 0.8em;
 }
 .summary {

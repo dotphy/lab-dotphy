@@ -46,7 +46,6 @@ function isDesktop() {
 
 async function getData(tutorialRef, audioRef) {
   State = await getTutorial(tutorialRef);
-  let audio = await getAudio(audioRef);
 }
 
 function DisplayVectorsTab({

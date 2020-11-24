@@ -11,11 +11,12 @@ import VectorIcon from "../Assets/VectorIcon.svg";
 async function getTopics() {
   let topics = [];
   let ref = await storage.ref().listAll();
+
   await ref.prefixes.map((subRef) => {
     topics.push(subRef.location.path_);
   });
 
-  return topics.slice();
+  return topics;
 }
 
 export default function Learn() {
@@ -24,7 +25,7 @@ export default function Learn() {
 
   useEffect(() => {
     getTopics().then((result) => {
-      setTopics(result.slice());
+      setTopics(result);
       setIsLoading(false);
     });
   }, []);

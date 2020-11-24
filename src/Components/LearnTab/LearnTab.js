@@ -5,6 +5,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { storage } from "../../services/firebase";
 import { Redirect } from "react-router-dom";
 
@@ -27,9 +28,12 @@ function SubTopicTab(props) {
           }}
         />
       ) : (
-        <p className="subtopictab">
-          {props.subTopicRef.split("/")[2].split(".")[0].split("-").join(" ")}
-        </p>
+        <div className="subtopictab">
+          <p>
+            {props.subTopicRef.split("/")[2].split(".")[0].split("-").join(" ")}{" "}
+          </p>
+          <ArrowForwardIcon className="subtopic-icon" />
+        </div>
       )}
     </div>
   );
@@ -51,12 +55,7 @@ export default class LearnTab extends React.Component {
       .listAll()
       .then((ref) => {
         ref.items.map((item) => {
-          let obj = {};
-          obj.name = item.location.path_;
-          item.getMetadata().then((data) => {
-            console.log((obj.time = new Date(data.timeCreated).getTime()));
-          });
-          subTopicsCopy.push(obj);
+          subTopicsCopy.push(item.location.path_);
         });
         this.setState({
           subTopics: subTopicsCopy,
@@ -65,8 +64,8 @@ export default class LearnTab extends React.Component {
           elems: this.state.subTopics.map((subTopic) => {
             return (
               <SubTopicTab
-                subTopicRef={subTopic.name}
-                subAudioRef={subTopic.name.replace("Tutorials", "Audio")}
+                subTopicRef={subTopic}
+                subAudioRef={subTopic.replace("Tutorials", "Audio")}
               />
             );
           }),

@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import "./LearnInfo.css";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 export default function LearnInfo(props) {
   return (
     <div className="learninfo">
