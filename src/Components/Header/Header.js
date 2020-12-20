@@ -11,18 +11,6 @@ import { useRouteMatch } from "react-router-dom";
 function Header(props) {
   const [active, setActive] = useState(1);
 
-  useEffect(() => {
-    checkRoute();
-  }, []);
-
-  function checkRoute() {
-    if (window.location.href.split("/")[3] == "") {
-      setActive(1);
-    } else if (window.location.href.split("/")[3] == "learn") {
-      setActive(2);
-    }
-  }
-
   return (
     <div className="header">
       <div className="header__left">
@@ -33,7 +21,7 @@ function Header(props) {
           <div
             className={`header__option ${active == 1 ? "header__option-active" : ""
               }`}
-            onClick={checkRoute}
+            onClick={() => { setActive(1) }}
           >
             <Home />
           </div>
@@ -42,7 +30,7 @@ function Header(props) {
           <div
             className={`header__option ${active == 2 ? "header__option-active" : ""
               }`}
-            onClick={checkRoute}
+            onClick={() => { setActive(2) }}
           >
             <Book />
           </div>
