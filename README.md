@@ -5,7 +5,7 @@
  <h1 align="center"><b> Dotphy </b> </h1> <p align="center">Learn Physics the real way !  </p>
  <br> 
  
- <h2> 🤔 What ? A virtual Lab ? <h2>
+ <h2> 🤔 What ? A virtual Lab ? </h2>
 <p>  Yes, Just a virtual version of your Physics lab created for High School Students so that Physics can be learned without killing the fun in it. You are free to do creative things, experiments or just play with your physics learnings on this virtual lab</p>
 
 <h2> ✋ And And ! Interactive lessons</h2>
