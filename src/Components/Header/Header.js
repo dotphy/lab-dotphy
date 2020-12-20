@@ -17,9 +17,9 @@ function Header(props) {
 
   function checkRoute() {
     if (window.location.href.split("/")[3] == "") {
-      setActive(2);
-    } else if (window.location.href.split("/")[3] == "learn") {
       setActive(1);
+    } else if (window.location.href.split("/")[3] == "learn") {
+      setActive(2);
     }
   }
 
@@ -31,9 +31,8 @@ function Header(props) {
       <div className="header__middle">
         <Link to="/">
           <div
-            className={`header__option ${
-              active == 1 ? "header__option-active" : ""
-            }`}
+            className={`header__option ${active == 1 ? "header__option-active" : ""
+              }`}
             onClick={checkRoute}
           >
             <Home />
@@ -41,9 +40,8 @@ function Header(props) {
         </Link>
         <Link to="/learn">
           <div
-            className={`header__option ${
-              active == 2 ? "header__option-active" : ""
-            }`}
+            className={`header__option ${active == 2 ? "header__option-active" : ""
+              }`}
             onClick={checkRoute}
           >
             <Book />
