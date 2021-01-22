@@ -5,8 +5,11 @@ import Loader from "./Components/Loader/Loader";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-const Learn = React.lazy(() => import("./Learn/Learn"));
 const VectorLab = React.lazy(() => import("./Labs/VectorLab/VectorLab"));
+const KinematicsLab = React.lazy(() =>
+  import("./Labs/KinematicsLab/KinematicsLab")
+);
+const Learn = React.lazy(() => import("./Learn/Learn"));
 const Player = React.lazy(() => import("./Labs/VectorLab/Player"));
 
 function App() {
@@ -17,6 +20,7 @@ function App() {
         <div className="main">
           <Suspense fallback={<Loader />}>
             <Route exact path="/" component={VectorLab} />
+            <Route exact path="/kinematics" component={KinematicsLab} />
             <Route path="/learn" component={Learn} />
             <Route path="/play" component={Player} />
           </Suspense>
