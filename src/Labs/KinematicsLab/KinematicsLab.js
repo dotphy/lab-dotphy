@@ -8,6 +8,9 @@ export default function KinematicsLab() {
   return (
     <div className="kinematicslab">
       <P5Wrapper sketch={Sketch} />
+      <div>
+        <h1> This is our sidebar</h1>
+      </div>
     </div>
   );
 }

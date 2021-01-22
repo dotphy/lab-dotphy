@@ -31,7 +31,10 @@ export default function Sketch(p) {
     shiftOrigin();
     drawAxes();
     drawVectors();
-    drawActiveVectors();
+    if (activeVectorData == undefined) {
+    } else {
+      drawActiveVectors();
+    }
     drawOperationed_add();
     drawOperationed_scale();
   };

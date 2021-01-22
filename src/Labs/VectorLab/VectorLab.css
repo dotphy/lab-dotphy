@@ -60,6 +60,14 @@
 .displayvectorstab__name__input {
   color: white;
 }
+.displayvectorstab__deleteicon {
+  background: #242526;
+  color: white;
+}
+.displayvectorstab__deleteicon:hover {
+  background: #242526;
+  color: white;
+}
 .displayvectors__name__icon {
   color: white;
 }

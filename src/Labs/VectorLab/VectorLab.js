@@ -5,7 +5,7 @@ import Sketch from "./Sketch";
 import Operation from "../../Components/Operations/Operation";
 import "./VectorLab.css";
 import AddIcon from "@material-ui/icons/Add";
-import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { Fab, Slider } from "@material-ui/core";
 import { SvgSlider, SvgAngle } from "../../Assets/icons";
 
@@ -44,6 +44,7 @@ function DisplayVectorsTab({
   handleActiveVector,
   hanldeXCompChange,
   handleYCompChange,
+  deleteVector,
   addOperation,
 }) {
   //Conditionally Rendered Compoenents ...
@@ -94,7 +95,13 @@ function DisplayVectorsTab({
     >
       <div className="displayvectorstab__name">
         <p>{vectorData.name}</p>
-        <EditIcon />
+        <Fab className="displayvectorstab__deleteicon">
+          <DeleteIcon
+            onClick={() => {
+              deleteVector(vectorData.id);
+            }}
+          />
+        </Fab>
       </div>
       <div className="displayvectorstab__data">
         <div className="displayvectorstab__data__xcomp">
@@ -133,6 +140,7 @@ function DisplayVectors({
   hanldeXCompChange,
   handleYCompChange,
   addOperation,
+  deleteVector,
   className,
 }) {
   return (
@@ -147,6 +155,7 @@ function DisplayVectors({
             hanldeXCompChange={hanldeXCompChange}
             handleYCompChange={handleYCompChange}
             addOperation={addOperation}
+            deleteVector={deleteVector}
             key={vectorData.id}
           />
         );
@@ -163,7 +172,6 @@ export default function VectorLab() {
   const [isSliderActive, setSliderStatus] = useState(false);
 
   function addNewVector(e) {
-    //Add a new Vector Randomly
     setNum(num + 1);
     e.preventDefault();
     let copyVectorsData = vectorsData.slice();
@@ -212,6 +220,16 @@ export default function VectorLab() {
     setSliderStatus(!isSliderActive);
   }
 
+  function deleteVector(id) {
+    let copyVectors = vectorsData.slice();
+    copyVectors.map((vector, index) => {
+      if (vector.id == id) {
+        copyVectors.splice(index, 1);
+      }
+    });
+    setVectorsData(copyVectors);
+  }
+
   return (
     <React.Fragment>
       <div className="vectorlab">
@@ -230,6 +248,7 @@ export default function VectorLab() {
             hanldeXCompChange={hanldeXCompChange}
             handleYCompChange={handleYCompChange}
             addOperation={addOperation}
+            deleteVector={deleteVector}
             className={
               isSliderActive ? "displayvector-open" : "displayvector-close"
             }
