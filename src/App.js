@@ -9,6 +9,7 @@ const VectorLab = React.lazy(() => import("./Labs/VectorLab/VectorLab"));
 const KinematicsLab = React.lazy(() =>
   import("./Labs/KinematicsLab/KinematicsLab")
 );
+const QnA = React.lazy(() => import("./QnA/QnA"));
 const Learn = React.lazy(() => import("./Learn/Learn"));
 const Player = React.lazy(() => import("./Labs/VectorLab/Player"));
 
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/kinematics" component={KinematicsLab} />
             <Route path="/learn" component={Learn} />
             <Route path="/play" component={Player} />
+            <Route path="/QnA" component={QnA} />
           </Suspense>
         </div>
       </div>

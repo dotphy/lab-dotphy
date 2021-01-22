@@ -19,25 +19,40 @@ function Header(props) {
       <div className="header__middle">
         <Link to="/">
           <div
-            className={`header__option ${active == 1 ? "header__option-active" : ""
-              }`}
-            onClick={() => { setActive(1) }}
+            className={`header__option ${
+              active == 1 ? "header__option-active" : ""
+            }`}
+            onClick={() => {
+              setActive(1);
+            }}
           >
             <Home />
           </div>
         </Link>
         <Link to="/learn">
           <div
-            className={`header__option ${active == 2 ? "header__option-active" : ""
-              }`}
-            onClick={() => { setActive(2) }}
+            className={`header__option ${
+              active == 2 ? "header__option-active" : ""
+            }`}
+            onClick={() => {
+              setActive(2);
+            }}
           >
             <Book />
           </div>
         </Link>
-        <div className="header__option">
-          <Forum />
-        </div>
+        <Link to="QnA">
+          <div
+            className={`header__option ${
+              active == 3 ? "header__option-active" : ""
+            }`}
+            onClick={() => {
+              setActive(3);
+            }}
+          >
+            <Forum />
+          </div>
+        </Link>
       </div>
       <div className="header__right">
         <div className="header__input">
