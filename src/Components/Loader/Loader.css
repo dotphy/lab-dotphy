@@ -6,6 +6,7 @@
   height: 90vh;
   justify-content: center;
   align-items: center;
+  z-index: 12;
 }
 
 .loader img {
@@ -36,5 +37,12 @@
 @media only screen and (max-width: 650px) {
   .loader__progress {
     width: 50vw !important;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .loader {
+    width: 103vw;
+    height: 140vh;
+    z-index: 900;
   }
 }
