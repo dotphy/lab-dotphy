@@ -1,4 +1,4 @@
-.kinematicslab {
+.shm {
   display: flex;
   justify-content: space-between;
   color: white;
@@ -10,8 +10,4 @@
   margin: 30px 30px 50px 30px;
   overflow: hidden;
   flex: 1;
-}
-
-.sidebar {
-  background: "#000000";
 }

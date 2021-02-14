@@ -1,19 +1,49 @@
 import React, { useState, useEffect } from "react";
 import "./Header.css";
 import dotphy from "../../Assets/dotphy.png";
+import Drawer from "@material-ui/core/Drawer";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import Home from "@material-ui/icons/Home";
 import Book from "@material-ui/icons/Book";
 import Forum from "@material-ui/icons/Forum";
+import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
 
-function Header(props) {
+function SideBarTab() {
+  return <div className="sidebar-tab"></div>;
+}
+
+function SideBar({ availableLabs }) {
+  const [drawerState, setDrawerState] = useState(false);
+  return (
+    <div>
+      <MenuIcon
+        style={{ color: "white" }}
+        onClick={() => {
+          setDrawerState(!drawerState);
+        }}
+      />
+      <Drawer
+        open={drawerState}
+        onClose={() => {
+          setDrawerState(false);
+        }}
+        className="sidebar"
+      >
+        {["one"]}
+      </Drawer>
+    </div>
+  );
+}
+
+function Header(props, availableLabs) {
   const [active, setActive] = useState(1);
 
   return (
     <div className="header">
       <div className="header__left">
+        <SideBar availableLabs={availableLabs} />
         <img src={dotphy} className="header__icon" alt="dotphy logo" />
       </div>
       <div className="header__middle">

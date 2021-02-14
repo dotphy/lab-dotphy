@@ -8,6 +8,11 @@
   width: 100vw;
   background-color: #252526;
 }
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
 .header__option-icon {
   fill: gray;
   width: 30px;
@@ -66,6 +71,13 @@
   outline-width: 0px;
   border: none;
   color: white;
+}
+
+.sidebar-tab {
+}
+
+.sidebar {
+  widows: 250px;
 }
 
 @media only screen and (max-width: 650px) {

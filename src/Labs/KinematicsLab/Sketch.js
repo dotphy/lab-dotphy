@@ -4,26 +4,36 @@ const DISPLAY_SIZE = {
   height: window.innerHeight / 2,
 };
 
-let b1;
-
 export default function Sketch(p) {
+  let objectsData = [];
+  let objects = [];
+  p.myCustomRedrawAccordingToNewPropsHandler = (props) => {
+    objectsData = props.objectsData;
+  };
+
   p.setup = () => {
     p.createCanvas(window.innerHeight, window.innerWidth);
-    b1 = new Ball();
+    for (let objectData of objectsData) {
+      objects.push(
+        new Ball(objectData.x, objectData.y, objectData.vecx, objectData.vecy)
+      );
+    }
   };
 
   p.draw = () => {
     p.background("#242526");
-    b1.updatePosition();
-    b1.updateComponents();
+
+    for (let object of objects) {
+      object.updatePosition();
+      object.updateComponents();
+    }
   };
 
   class Ball {
-    constructor() {
-      this.x = 0;
-      this.y = 0;
-      this.vec = p.createVector(Math.random(), Math.random());
-      this.acc = p.createVector(Math.random() * 0.1, Math.random() * 0.1);
+    constructor(x = 0, y = 0, vecx, vecy) {
+      this.x = x;
+      this.y = y;
+      this.vec = p.createVector(vecx, vecy);
     }
 
     updatePosition() {
