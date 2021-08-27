@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import "./App.css";
 import Header from "./Components/Header/Header";
 import Loader from "./Components/Loader/Loader";
+import Home from "./Components/Home/Home";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -11,8 +12,6 @@ const KinematicsLab = React.lazy(() =>
 );
 const QnA = React.lazy(() => import("./QnA/QnA"));
 const Learn = React.lazy(() => import("./Learn/Learn"));
-const Player = React.lazy(() => import("./Labs/VectorLab/Player"));
-const SHM = React.lazy(() => import("./Labs/SHM/SHM"));
 
 
 const availableLabs = [{
@@ -27,11 +26,10 @@ function App() {
         <Header />
         <div className="main">
           <Suspense fallback={<Loader />}>
-            <Route exact path="/" component={VectorLab} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/vectorlab" component={VectorLab} />
             <Route exact path="/kinematics" component={KinematicsLab} />
-            <Route exact path="/shm" component={SHM} />
             <Route path="/learn" component={Learn} />
-            <Route path="/play" component={Player} />
             <Route path="/QnA" component={QnA} />
           </Suspense>
         </div>
