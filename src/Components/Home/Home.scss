@@ -4,7 +4,12 @@
   color: white;
   opacity: 0.9;
 
+
   &__onboard {
+    display:flex;
+    padding-bottom:10vh;
+    height:90vh;
+    align-items:center;
     &__text {
       margin: 25vh $horizontal-padding;
     }
@@ -24,15 +29,21 @@
       font-weight: 300;
       font-size: 1.6em;
     }
+
+    &__vis {
+      width:30vw;
+      margin-top:20vh;
+      height:60vh;
+    }
   }
 
   &__labs {
     background-color: $tc;
     height: 100vh;
-    display:flex;
-    justify-content:space-around;
-    padding-top:8vh;
-    
+    display: flex;
+    justify-content: space-around;
+    margin-top:10vh;
+    padding-top: 8vh;
 
     &-bg {
       position: relative;
@@ -57,6 +68,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  transition:0.4s;
 
   &__name {
     margin-top: 30vh;
@@ -75,34 +87,33 @@
 
   &__button {
     display: none;
-    margin-bottom:2vh;
-    font-size:1.2em;
-    font-weight:700;
-    color:white;
-    padding:1em;
-    border-radius:4px;
-    background-color:$a4;
+    margin-bottom: 2vh;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: white;
+    padding: 1em;
+    border-radius: 4px;
+    background-color: $a4;
   }
-  .labcontainer__overview{
-    width:23vw;
-    height:40vh;
-    display:none;
+  .labcontainer__overview {
+    width: 23vw;
+    height: 40vh;
+    display: none;
   }
 
   &:hover {
-
     .labcontainer__name {
-      display:none;
+      display: none;
     }
     .labcontainer__desc {
       display: none;
     }
-    .labcontainer__overview{
-      display:flex;
+    .labcontainer__overview {
+      display: flex;
     }
 
-    .labcontainer__button{
-      display:flex;
+    .labcontainer__button {
+      display: flex;
     }
   }
 }

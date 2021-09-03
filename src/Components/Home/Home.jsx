@@ -22,7 +22,7 @@ function LabContiner(props) {
     >
       <div className="labcontainer__name"> {props.name} </div>
       <div className="labcontainer__desc"> {props.description}</div>
-      <div className="labcontainer__overview"> { "   "}</div>
+      <div className="labcontainer__overview"> {"   "}</div>
       <Link to={props.route} className="labcontainer__button">
         Go to {props.name}{" "}
       </Link>
@@ -41,6 +41,13 @@ export default function Home() {
             for high schoolers to study physics.
           </div>
         </div>
+        <iframe
+          src="https://my.spline.design/untitled-0c08480cbc0953bab091caaf21183300/"
+          frameborder="0"
+          width="100%"
+          height="100%"
+          className="home__onboard__vis"
+        ></iframe>
       </div>
       <div className="home__labs">
         <LabContiner
@@ -54,8 +61,8 @@ export default function Home() {
           route="Kinematics"
         />
         <LabContiner
-          name="Kinematics Lab"
-          description="Add a body, add forces to it, see what happens and do whatever you want to do with it "
+          name="Mathematics Lab"
+          description="WIP "
           route="Kinematics"
         />
       </div>
