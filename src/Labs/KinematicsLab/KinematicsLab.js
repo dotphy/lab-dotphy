@@ -3,6 +3,7 @@ import Sketch from "./Sketch";
 import P5Wrapper from "react-p5-wrapper";
 import "./KinematicsLab.css";
 import { Fab, TextField } from "@material-ui/core";
+import {Helmet} from "react-helmet";
 import AddIcon from "@material-ui/icons/Add";
 
 function SideBar({ addNewObject }) {
@@ -29,7 +30,7 @@ function SideBar({ addNewObject }) {
 
 export default function KinematicsLab() {
   const [objectsData, setObjectsData] = useState([
-    { x: 10, y: 20, vecx: Math.random(), vecy: Math.random() },
+    { x: 10, y: 20, vecx: 5, vecy: 5},
   ]);
 
   function addNewObject(x, y, vecx, vecy) {
@@ -40,6 +41,7 @@ export default function KinematicsLab() {
 
   return (
     <div className="kinematicslab">
+      <Helmet> <title> KinematicsLab - WIP </title> </Helmet>
       <P5Wrapper sketch={Sketch} objectsData={objectsData} />
       <SideBar addNewObject={addNewObject} />
     </div>

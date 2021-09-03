@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
-import "./App.css";
+import "./App.scss";
 import Header from "./Components/Header/Header";
 import Loader from "./Components/Loader/Loader";
 import Home from "./Components/Home/Home";
+import {Helmet } from "react-helmet";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <Helmet> <title> Dotphy - Your Virtual Physics lab</title> </Helmet>
         <Header />
         <div className="main">
           <Suspense fallback={<Loader />}>

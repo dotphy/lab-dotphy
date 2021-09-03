@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import P5Wrapper from "react-p5-wrapper";
+import {Helmet } from "react-helmet";
 import { v4 as uuid } from "uuid";
 import Sketch from "./Sketch";
 import Operation from "../../Components/Operations/Operation";
-import "./VectorLab.css";
-import AddIcon from "@material-ui/icons/Add";
+import "./VectorLab.scss";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Fab, Slider } from "@material-ui/core";
-import { SvgSlider, SvgAngle } from "../../Assets/icons";
+import { SvgSlider } from "../../Assets/icons";
 
 let value = 0;
 
@@ -21,7 +21,7 @@ function randomVector(name) {
   return {
     id: uuid(),
     name: name,
-    x: Math.floor(Math.random() * DISPLAY_SIZE.width),
+    x: Math.floor(Math.random() * (DISPLAY_SIZE.width/1.2)),
     y: Math.floor(Math.random() * DISPLAY_SIZE.height),
     color: "white",
     operations: [],
@@ -106,7 +106,6 @@ function DisplayVectorsTab({
       <div className="displayvectorstab__data">
         <div className="displayvectorstab__data__xcomp">
           <p className="displayvectorstab__data__xcomp__label">
-            {" "}
             Horizontal Component
           </p>
           {xComp}
@@ -117,7 +116,6 @@ function DisplayVectorsTab({
         </div>
         <div className="displayvectorstab__data__angle">
           <div>
-            <SvgAngle className="displayvectorstab__data__angle-icon" />
             Angle
           </div>
           <div className="displayvectorstab__data__angle-text">
@@ -142,6 +140,7 @@ function DisplayVectors({
   addOperation,
   deleteVector,
   className,
+  addNewVector
 }) {
   return (
     <div className={`displayvectors ${className}`}>
@@ -168,7 +167,6 @@ export default function VectorLab() {
   const [num, setNum] = useState(2);
   const [vectorsData, setVectorsData] = useState([randomVector("V1")]);
   const [activeVectorId, setActiveVectorId] = useState(vectorsData[0]["id"]);
-  const [isMouseInAddIcon, setIsMouseInAddIcon] = useState(false);
   const [isSliderActive, setSliderStatus] = useState(false);
 
   function addNewVector(e) {
@@ -233,6 +231,7 @@ export default function VectorLab() {
   return (
     <React.Fragment>
       <div className="vectorlab">
+    <Helmet> <title> VectorLab - Dotphy</title></Helmet>
         <div>
           <P5Wrapper
             sketch={Sketch}
@@ -240,7 +239,7 @@ export default function VectorLab() {
             activeVectorId={activeVectorId}
           />
         </div>
-        <div style={{ marginRight: "10px" }}>
+        <div style={{ marginRight: "10px" }} className="vectorlab__control-pannel">
           <DisplayVectors
             vectorsData={vectorsData}
             activeVectorId={activeVectorId}
@@ -249,6 +248,7 @@ export default function VectorLab() {
             handleYCompChange={handleYCompChange}
             addOperation={addOperation}
             deleteVector={deleteVector}
+            addNewVector={addNewVector}
             className={
               isSliderActive ? "displayvector-open" : "displayvector-close"
             }
@@ -259,22 +259,7 @@ export default function VectorLab() {
             }`}
             onClick={handleSliderClick}
           />
-
-          <div className="vectorlab__input">
-            <Fab
-              onClick={addNewVector}
-              variant="extended"
-              color="secondary"
-              onMouseEnter={() => {
-                setIsMouseInAddIcon(true);
-              }}
-              onMouseLeave={() => setIsMouseInAddIcon(false)}
-              style={{ padding: "10px" }}
-            >
-              <AddIcon className="vactorlab_input_icon" />
-              {isMouseInAddIcon && (isDesktop() ? "New Vector" : "")}
-            </Fab>
-          </div>
+          <button style={{fontSize:"1.1em"}} onClick={addNewVector}>Add A  New Vector </button>
         </div>
       </div>
     </React.Fragment>

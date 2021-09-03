@@ -1,17 +1,26 @@
 .app {
   display: flex;
   flex-direction: column;
+font-family: 'Inter', sans-serif;
 }
 .main {
   display: flex;
   justify-content: space-between;
 }
 
+h1{
+    font-size: 6vw;
+    line-height: 1.1em;
+    // font-size: 8vw;
+    line-height: 0.9em;
+    margin: 0.3em 0 0.6em;
+    font-weight: 900;
+}
+
 @media only screen and (max-width: 650px) {
   .main {
     display: flex;
     flex-direction: column-reverse;
-    height: 80vh;
     width: 96vw;
     justify-content: space-between;
     align-items: center;
