@@ -11,15 +11,14 @@
     "classnames": "^2.3.1",
     "dotenv": "^8.2.0",
     "firebase": "^8.0.0",
-    "node-sass": "^6.0.1",
     "p5": "^1.1.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-p5-wrapper": "^2.3.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^2.1.8",
-    "sass": "^1.38.1",
+    "react-scripts": "^4.0.3",
+    "sass": "^1.39.0",
     "uuid": "^8.3.0"
   },
   "scripts": {
