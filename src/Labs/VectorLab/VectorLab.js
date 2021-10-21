@@ -259,7 +259,7 @@ export default function VectorLab() {
             }`}
             onClick={handleSliderClick}
           />
-          <button style={{fontSize:"1.1em"}} onClick={addNewVector}>Add A  New Vector </button>
+          <button style={{fontSize:"1.1em"}} onClick={addNewVector} className="displayvector__button">Add A  New Vector </button>
         </div>
       </div>
     </React.Fragment>

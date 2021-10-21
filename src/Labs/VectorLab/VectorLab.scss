@@ -191,6 +191,10 @@
     width: 0vw;
     transition: 1s linear;
   }
+  .displayvector__button{
+    transform:translateX(-100%);
+    width:12em;
+  }
 
   .displayvectorstab {
     padding: 0px;
