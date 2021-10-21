@@ -106,8 +106,11 @@
       display: none;
     }
     .labcontainer__desc {
-      display: none;
+      margin-top:30%;
+      font-size:1.2em;
+      font-weight:600;
     }
+
     .labcontainer__overview {
       display: flex;
     }
@@ -117,3 +120,42 @@
     }
   }
 }
+
+  @media (max-width: $home-layout-breakpoint){
+    .home{
+      &__onboard{
+        &__text{
+          margin:25vh 10vw;
+        }
+        iframe{
+          display:none;
+        }
+      }
+
+    }
+    .home__labs{
+      width:100vw;
+      align-items:center;
+      flex-direction:column;
+    }
+    .labcontainer{
+      margin:40px 0px;
+      width:60vw;
+      height:40vh;
+      &__name{
+        margin-top:2vh;
+        font-size:2em;
+      }
+      &__desc{
+        margin:0;
+      }
+
+      &:hover{
+        .labcontainer__desc{
+          margin-top:10px;
+        }
+      }
+
+
+    }
+  }

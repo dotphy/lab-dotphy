@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
-import LearnTab from "../Components/LearnTab/LearnTab";
+//import LearnTab from "../Components/LearnTab/LearnTab";
 import { Helmet } from "react-helmet";
 import "./Learn.scss";
-import { storage } from "../services/firebase";
 import LearnInfo from "../Components/LearnInfo/LearnInfo";
 import { Link } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import VectorIcon from "../Assets/VectorIcon.svg";
 
-async function getTopics() {
-  let topics = [];
-  let ref = await storage.ref().listAll();
+// async function getTopics() {
+//  let topics = [];
+//   let ref = await storage.ref().listAll();
 
-  await ref.prefixes.map((subRef) => {
-    topics.push(subRef.location.path_);
-  });
+//   await ref.prefixes.map((subRef) => {
+//     topics.push(subRef.location.path_);
+//   });
 
-  return topics;
-}
+//   return topics;
+// }
 
 export default function Learn() {
   const [topics, setTopics] = useState([]);
@@ -34,7 +33,7 @@ export default function Learn() {
         <ArrowBackIosIcon /> Back to Lab
       </Link>
       <div className="learn__main">
-        <h1>  🚧 🚧 WIP 🚧 🚧</h1>
+        <h1> 🚧 🚧 WIP 🚧 🚧</h1>
       </div>
     </div>
   );
